@@ -1,0 +1,16 @@
+﻿
+<div style="display: table; table-layout: fixed; width: 100%;padding: 10px;" ng-controller="groupListCtrl">
+    <div style="display: table-cell">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="group in groups">{{group.Name}}</li>
+        </ul>
+    </div>
+    <div style="display: table-cell; width: 100px; padding: 10px;">
+        <div ng-controller="groupCreateController as grp">
+            <input type="button" class="btn btn-success" value="+" ng-click="showNewGroupForm()" />
+            <div ng-if="typeof(Model) != 'undefined'">
+                <ng-include src="'/Home/NewGroup'"></ng-include>
+            </div>
+        </div>       
+    </div>
+</div>
