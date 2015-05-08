@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.UI", "BrewBro\BrewB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Core.Interfaces", "BrewBro.Core\BrewBro.Core.Interfaces.csproj", "{230C5713-DFE7-4AC5-8CB4-37F22EF6A3D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Groups.Entities", "BrewBro.Groups\BrewBro.Groups.Entities.csproj", "{724DEA2D-0839-4B7C-8A1B-A404D62B4406}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BOL", "BOL", "{709B4BFE-209E-4EF3-AFDF-800FC7120F9F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Groups", "Groups", "{BB78C194-40AC-4C2D-8BF4-42969E8B8C7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Users.Entities", "BrewBro.Users.Entities\BrewBro.Users.Entities.csproj", "{EB089DB5-BA41-4C72-9E29-2BB28953214D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,15 +25,15 @@ Global
 		{230C5713-DFE7-4AC5-8CB4-37F22EF6A3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{230C5713-DFE7-4AC5-8CB4-37F22EF6A3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{230C5713-DFE7-4AC5-8CB4-37F22EF6A3D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{724DEA2D-0839-4B7C-8A1B-A404D62B4406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{724DEA2D-0839-4B7C-8A1B-A404D62B4406}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{724DEA2D-0839-4B7C-8A1B-A404D62B4406}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{724DEA2D-0839-4B7C-8A1B-A404D62B4406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB089DB5-BA41-4C72-9E29-2BB28953214D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB089DB5-BA41-4C72-9E29-2BB28953214D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB089DB5-BA41-4C72-9E29-2BB28953214D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB089DB5-BA41-4C72-9E29-2BB28953214D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{724DEA2D-0839-4B7C-8A1B-A404D62B4406} = {BB78C194-40AC-4C2D-8BF4-42969E8B8C7D}
+		{EB089DB5-BA41-4C72-9E29-2BB28953214D} = {709B4BFE-209E-4EF3-AFDF-800FC7120F9F}
 	EndGlobalSection
 EndGlobal

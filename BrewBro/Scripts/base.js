@@ -1,4 +1,4 @@
-﻿var appModule = angular.module('brewBro', ['ngRoute', 'ui.bootstrap', 'groupControllers', 'groupServices']);
+﻿var appModule = angular.module('brewBro', ['ngRoute', 'ui.bootstrap', 'groupControllers', 'groupServices', 'ngAnimate', 'ui.checkbox']);
 
 //Defining Routing
 appModule.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

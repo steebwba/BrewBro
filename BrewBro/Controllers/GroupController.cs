@@ -1,4 +1,5 @@
 ﻿using BrewBro.Groups.Entities;
+using BrewBro.Users.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,6 @@ namespace BrewBro.Controllers
 
             };
         }
+      
     }
 }
