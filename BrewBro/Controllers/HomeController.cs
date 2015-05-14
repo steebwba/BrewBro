@@ -14,17 +14,33 @@ namespace BrewBro.Controllers
             return View();
         }
 
+        public ActionResult Landing()
+        {
+            return View();
+        }
 
         public ActionResult Groups()
         {
 
-            return View();
+            return PartialView("Group/Index");
         }
 
         //TODO Move to correct controllers
         public ActionResult NewGroup()
         {
-            return View("AddEdit");
+            return PartialView("Group/AddEdit");
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return PartialView("User/Login");
+        }
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return PartialView("User/Register");
         }
     }
 }

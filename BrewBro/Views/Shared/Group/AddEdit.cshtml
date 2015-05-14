@@ -1,5 +1,6 @@
 ﻿<form ng-submit="save">
     <div class="panel panel-default">
+
         <div class="panel-heading">
             <h3 class="panel-title">Create New Group</h3>
         </div>
@@ -11,13 +12,13 @@
             <div class="form-group">
                 <label for="txtUsers">Users</label>
                 <div class="input-group">
-                    <input type="text" id="txtUsers" class="form-control" placeholder="Enter Name" />
+                    <input type="text" id="txtUsers" class="form-control" placeholder="Enter Name" ng-model="Group.SearchText" />
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" ng-click="searchUsers()"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
                 </div>
-                <div class="control-group" ng-if="Users.length > 0">
-                    <div ng-repeat="user in Users" class="checkbox">
+                <div class="control-group" ng-if="Group.Users.length > 0">
+                    <div ng-repeat="user in Group.Users" class="checkbox">
                         <checkbox ng-model="user.Selected"></checkbox>
                         {{user.Name}}
                     </div>
@@ -28,5 +29,6 @@
             <input type="submit" class="btn btn-primary" value="Save" />
             <input type="button" class="btn btn-default" value="Close" ng-click="closeNewGroupForm()" />
         </div>
+
     </div>
 </form>

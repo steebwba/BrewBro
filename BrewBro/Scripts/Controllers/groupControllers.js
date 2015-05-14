@@ -1,6 +1,6 @@
 ﻿var groupControllers = angular.module('groupControllers', []);
 
-groupControllers.controller('groupListCtrl',
+groupControllers.controller('groupViewController',
   function ($scope, $http, Group, $location) {
 
       $scope.loadGroups = function () {
@@ -22,11 +22,14 @@ groupControllers.controller('groupListCtrl',
       });
   });
 
-groupControllers.controller('groupCreateController', ['$scope', 'Group', '$location',
-  function ($scope, Group, $location) {
+groupControllers.controller('groupCreateController',
+  function ($scope, $http, $location) {
       $scope.editMode = false;
-      $scope.Name = '';
-      $scope.Users = [];
+      $scope.Group = {
+          Name: '',
+          Users: [],
+          SearchText: ''
+      }
       $scope.showNewGroupForm = function () {
           $scope.editMode = true;
       }
@@ -34,22 +37,29 @@ groupControllers.controller('groupCreateController', ['$scope', 'Group', '$locat
           $scope.editMode = false;
       }
       $scope.searchUsers = function () {
-          $scope.Users.push({
+          $http.get('/api/User?searchText=' + $scope.Group.SearchText)
+               .success(function (data) {
+                   alert(JSON.stringify(data));
+                   var selectedItems = $scope.Group.Users.filter(function (el) { return el.Selected });
+                   var len = data.length;
+                   $scope.Group.Users = selectedItems;
 
-              Name: "Test User",
-              Id: 1,
-              Selected: false
-          }),
-          $scope.Users.push({
-
-              Name: "Test User 2",
-              Id: 2,
-              Selected: false
-          })
+                   for (var i = 0; i < len; i++) {
+                       //check to see if the item is already a selected item
+                       if ($scope.Group.Users.filter(function (el) { return el.Id == data[i].Id }).length == 0)
+                       {
+                           $scope.Group.Users.push(data[i]);
+                       }
+                   }
+               })
+               .error(function () {
+                   //TODO error dialog/toast
+                   alert('it went wrong!');
+               });
       }
       $scope.save = function () {
           $scope.editMode = false;
           $scope.$emit('groupAdded');
       }
 
-  }]);
+  });

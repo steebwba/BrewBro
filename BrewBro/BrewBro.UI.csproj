@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KanbanApp</RootNamespace>
-    <AssemblyName>KanbanApp</AssemblyName>
+    <RootNamespace>BrewBro</RootNamespace>
+    <AssemblyName>BrewBro</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -137,6 +137,9 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\Controllers\groupControllers.js" />
+    <Content Include="Scripts\Controllers\userControllers.js" />
+    <Content Include="Scripts\Directives\compareValidator.js" />
+    <Content Include="Scripts\Directives\validate.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -881,12 +884,43 @@
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
     <Content Include="Scripts\Services\groups.js" />
-    <None Include="Views\Home\AddEdit.cshtml" />
+    <Content Include="Views\Home\Landing.cshtml" />
+    <None Include="Views\Shared\Group\AddEdit.cshtml" />
+    <Content Include="template\accordion\accordion-group.html" />
+    <Content Include="template\accordion\accordion.html" />
+    <Content Include="template\alert\alert.html" />
+    <Content Include="template\carousel\carousel.html" />
+    <Content Include="template\carousel\slide.html" />
+    <Content Include="template\datepicker\datepicker.html" />
+    <Content Include="template\datepicker\day.html" />
+    <Content Include="template\datepicker\month.html" />
+    <Content Include="template\datepicker\popup.html" />
+    <Content Include="template\datepicker\year.html" />
+    <Content Include="template\modal\backdrop.html" />
+    <Content Include="template\modal\window.html" />
+    <Content Include="template\pagination\pager.html" />
+    <Content Include="template\pagination\pagination.html" />
+    <Content Include="template\popover\popover-template.html" />
+    <Content Include="template\popover\popover.html" />
+    <Content Include="template\progressbar\bar.html" />
+    <Content Include="template\progressbar\progress.html" />
+    <Content Include="template\progressbar\progressbar.html" />
+    <Content Include="template\rating\rating.html" />
+    <Content Include="template\tabs\tab.html" />
+    <Content Include="template\tabs\tabset.html" />
+    <Content Include="template\timepicker\timepicker.html" />
+    <Content Include="template\tooltip\tooltip-html-popup.html" />
+    <Content Include="template\tooltip\tooltip-html-unsafe-popup.html" />
+    <Content Include="template\tooltip\tooltip-popup.html" />
+    <Content Include="template\tooltip\tooltip-template-popup.html" />
+    <Content Include="template\typeahead\typeahead-match.html" />
+    <Content Include="template\typeahead\typeahead-popup.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -913,7 +947,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Groups.cshtml" />
+    <Content Include="Views\Shared\Group\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\User\Login.cshtml" />
+    <Content Include="Views\Shared\User\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -925,16 +962,23 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Group\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BrewBro.Core\BrewBro.Core.Interfaces.csproj">
+    <ProjectReference Include="..\BrewBro.Core\BrewBro.Core.csproj">
       <Project>{230c5713-dfe7-4ac5-8cb4-37f22ef6a3d2}</Project>
-      <Name>BrewBro.Core.Interfaces</Name>
+      <Name>BrewBro.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BrewBro.User.Data\BrewBro.Users.Data.csproj">
+      <Project>{bf62febe-b2b0-4644-8e6c-46fa9d84f7cc}</Project>
+      <Name>BrewBro.Users.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\BrewBro.Users.Entities\BrewBro.Users.Entities.csproj">
       <Project>{eb089db5-ba41-4c72-9e29-2bb28953214d}</Project>
       <Name>BrewBro.Users.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zeel.Business.Users\BrewBro.Users.Business.csproj">
+      <Project>{b156af74-cd37-4b8c-95fd-74614b4e9036}</Project>
+      <Name>BrewBro.Users.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,21 +1,25 @@
-﻿var appModule = angular.module('brewBro', ['ngRoute', 'ui.bootstrap', 'groupControllers', 'groupServices', 'ngAnimate', 'ui.checkbox']);
+﻿var appModule = angular.module('brewBro', ['ngRoute', 'ui.bootstrap', 'groupControllers', 'userControllers', 'groupServices', 'ngAnimate', 'ui.checkbox', 'ui.bootstrap.showErrors', 'directivesModule']);
 
 //Defining Routing
-appModule.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-    $routeProvider.when('/Groups',
+appModule.config(['$routeProvider', 'showErrorsConfigProvider', function ($routeProvider, showErrorsConfigProvider) {
+    $routeProvider
+    .when('/',
+    {
+        templateUrl: 'Home/Landing'
+    })
+    .when('/Login',
+    {
+        templateUrl: 'Home/Login',
+        controller: 'loginController'
+    })
+    .when('/Groups',
     {
         templateUrl: 'Home/Groups',
-        controller: 'groupListCtrl'
-    })
-    .when('/AddGroup',
-    {
-        templateUrl: 'Home/NewGroup',
-        controller: 'groupListCtrl'
-
+        controller: 'groupViewController'
     })
     .otherwise({
-        redirectTo: '/Groups'
+        redirectTo: '/Home'
     });
 
-    //$locationProvider.html5mode(true);
+    showErrorsConfigProvider.showSuccess(true);
 }]);

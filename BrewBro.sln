@@ -5,11 +5,19 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.UI", "BrewBro\BrewBro.UI.csproj", "{95D7E949-00A2-49E2-A490-99D27B1C1101}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Core.Interfaces", "BrewBro.Core\BrewBro.Core.Interfaces.csproj", "{230C5713-DFE7-4AC5-8CB4-37F22EF6A3D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Core", "BrewBro.Core\BrewBro.Core.csproj", "{230C5713-DFE7-4AC5-8CB4-37F22EF6A3D2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BOL", "BOL", "{709B4BFE-209E-4EF3-AFDF-800FC7120F9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Users.Entities", "BrewBro.Users.Entities\BrewBro.Users.Entities.csproj", "{EB089DB5-BA41-4C72-9E29-2BB28953214D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{CB3CC3AD-3B45-48B9-9BEA-8122E520EFDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Users.Data", "BrewBro.User.Data\BrewBro.Users.Data.csproj", "{BF62FEBE-B2B0-4644-8E6C-46FA9D84F7CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BAL", "BAL", "{ED2A01B5-9A1F-4308-9584-94143E633AC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Users.Business", "Zeel.Business.Users\BrewBro.Users.Business.csproj", "{B156AF74-CD37-4B8C-95FD-74614B4E9036}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,11 +37,22 @@ Global
 		{EB089DB5-BA41-4C72-9E29-2BB28953214D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB089DB5-BA41-4C72-9E29-2BB28953214D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB089DB5-BA41-4C72-9E29-2BB28953214D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF62FEBE-B2B0-4644-8E6C-46FA9D84F7CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF62FEBE-B2B0-4644-8E6C-46FA9D84F7CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF62FEBE-B2B0-4644-8E6C-46FA9D84F7CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF62FEBE-B2B0-4644-8E6C-46FA9D84F7CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B156AF74-CD37-4B8C-95FD-74614B4E9036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B156AF74-CD37-4B8C-95FD-74614B4E9036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B156AF74-CD37-4B8C-95FD-74614B4E9036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B156AF74-CD37-4B8C-95FD-74614B4E9036}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{230C5713-DFE7-4AC5-8CB4-37F22EF6A3D2} = {709B4BFE-209E-4EF3-AFDF-800FC7120F9F}
 		{EB089DB5-BA41-4C72-9E29-2BB28953214D} = {709B4BFE-209E-4EF3-AFDF-800FC7120F9F}
+		{BF62FEBE-B2B0-4644-8E6C-46FA9D84F7CC} = {CB3CC3AD-3B45-48B9-9BEA-8122E520EFDB}
+		{B156AF74-CD37-4B8C-95FD-74614B4E9036} = {ED2A01B5-9A1F-4308-9584-94143E633AC2}
 	EndGlobalSection
 EndGlobal
