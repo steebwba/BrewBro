@@ -1,4 +1,6 @@
-﻿using BrewBro.Core.Interfaces;
+﻿using BrewBro.Core;
+using BrewBro.Core.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace BrewBro.Users.Entities
 {
-    public class Group : IEntity
+    [JsonObject(MemberSerialization.OptOut)]
+    public class Group : BaseEntity
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
-        public bool Selected { get; set; }
-        public bool Deleted { get; set; }
+        List<User> Users { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿var groupControllers = angular.module('groupControllers', []);
 
 groupControllers.controller('groupViewController',
-  function ($scope, $http, Group, $location) {
+  function ($scope, $http, $location) {
 
       $scope.loadGroups = function () {
           $http.get('/api/Group/LoadAllGroups').
@@ -17,13 +17,12 @@ groupControllers.controller('groupViewController',
       $scope.loadGroups();
 
       var groupAddedEvent = $scope.$on('groupAdded', function () {
-          alert('OMG!');
           $scope.loadGroups();
       });
   });
 
 groupControllers.controller('groupCreateController',
-  function ($scope, $http, $location) {
+  function ($scope, $http, $location, GroupService) {
       $scope.editMode = false;
       $scope.Group = {
           Name: '',
@@ -58,8 +57,15 @@ groupControllers.controller('groupCreateController',
                });
       }
       $scope.save = function () {
+
+          GroupService.save($scope.Group, function () {
+              $scope.$emit('groupAdded');
+              alert('yay!');
+          }, function () {
+              alert('error!');
+          });
           $scope.editMode = false;
-          $scope.$emit('groupAdded');
+        
       }
 
   });

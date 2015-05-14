@@ -1,4 +1,4 @@
-﻿<form ng-submit="save">
+﻿<form ng-submit="save()">
     <div class="panel panel-default">
 
         <div class="panel-heading">
@@ -7,7 +7,7 @@
         <div class="panel-body">
             <div class="form-group">
                 <label for="txtName">Name of Group</label>
-                <input type="text" id="txtName" ng-value="Name" class="form-control" placeholder="Enter Group Name" />
+                <input type="text" id="txtName" ng-value="Name" class="form-control" placeholder="Enter Group Name" ng-model="Group.Name" />
             </div>
             <div class="form-group">
                 <label for="txtUsers">Users</label>

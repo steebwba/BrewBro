@@ -8,6 +8,7 @@ namespace BrewBro.Core.Interfaces
 {
     public interface IEntity
     {
+        Guid Id { get; set; }
         bool Selected { get; set; }
         bool Deleted { get; set; }
     }

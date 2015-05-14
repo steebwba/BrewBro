@@ -1,4 +1,5 @@
 ﻿using BrewBro.Users.Entities;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +17,21 @@ namespace BrewBro.Controllers
             return new List<Group>()
             {
                 new Group(){
-                    Id = 1,
+                    Id = Guid.NewGuid(),
                     Name = "Test Group 1"
 
                 },
                 new Group(){
-                    Id = 1,
+                    Id = Guid.NewGuid(),
                     Name = "Test Group 2"
 
                 }
 
             };
+        }
+
+        public void Post(JObject group)
+        {
         }
       
     }
