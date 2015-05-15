@@ -968,15 +968,11 @@
       <Project>{230c5713-dfe7-4ac5-8cb4-37f22ef6a3d2}</Project>
       <Name>BrewBro.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BrewBro.User.Data\BrewBro.Users.Data.csproj">
-      <Project>{bf62febe-b2b0-4644-8e6c-46fa9d84f7cc}</Project>
-      <Name>BrewBro.Users.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BrewBro.Users.Entities\BrewBro.Users.Entities.csproj">
       <Project>{eb089db5-ba41-4c72-9e29-2bb28953214d}</Project>
       <Name>BrewBro.Users.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zeel.Business.Users\BrewBro.Users.Business.csproj">
+    <ProjectReference Include="..\BrewBro.Business.Users\BrewBro.Users.Business.csproj">
       <Project>{b156af74-cd37-4b8c-95fd-74614b4e9036}</Project>
       <Name>BrewBro.Users.Business</Name>
     </ProjectReference>

@@ -8,9 +8,6 @@ using System.Web;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Text;
-
-using BrewBro.Users.Data.Interfaces;
-using BrewBro.Users.Data;
 using Business = BrewBro.Users.Business;
 using BrewBro.Users.Entities;
 
@@ -18,7 +15,7 @@ namespace BrewBro.Controllers
 {
     public class UserController : ApiController
     {
-        IUsersRepository<User> _Repo = new UsersRepository();
+        Business.Users _BAL = new Business.Users();
 
         /// <summary>
         /// Searches users with given parameters
@@ -28,7 +25,7 @@ namespace BrewBro.Controllers
         [HttpGet]
         public IEnumerable<User> Get(string searchText)
         {
-            return _Repo.Search(searchText);
+            return _BAL.Search(searchText);
         }
 
 
@@ -40,9 +37,7 @@ namespace BrewBro.Controllers
         public HttpResponseMessage Post(User user)
         {
             //hash the created password for security
-            user.Password = Business.Users.CreateHash(user.Password);
-
-            _Repo.Add(user);
+            _BAL.Register(user);
 
             return Request.CreateResponse(HttpStatusCode.Created, "User Created");
         }

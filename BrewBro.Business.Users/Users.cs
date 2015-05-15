@@ -12,6 +12,19 @@ namespace BrewBro.Users.Business
 {
     public class Users
     {
+        IRepository<User> _Repo;
+
+        public Users()
+        {
+            _Repo = new UsersRepository();
+        }
+
+        public Users(IRepository<User> repo)
+        {
+            _Repo = repo;
+        }
+
+
         //TODO Move and to constants file (possibly configure from resources file)
         // The following constants may be changed without breaking existing hashes.
         public const int SaltByteSize = 24;
@@ -22,7 +35,12 @@ namespace BrewBro.Users.Business
         public const int SaltIndex = 1;
         public const int PBKDF2Index = 2;
 
-        public static string CreateHash(string password)
+        /// <summary>
+        /// Creates a hash based on the provided string.
+        /// </summary>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
+        public string CreateHash(string password)
         {
             // Generate a random salt
             RNGCryptoServiceProvider csprng = new RNGCryptoServiceProvider();
@@ -36,7 +54,7 @@ namespace BrewBro.Users.Business
                 Convert.ToBase64String(hash);
         }
 
-        private static byte[] PBKDF2(string password, byte[] salt, int iterations, int outputBytes)
+        private byte[] PBKDF2(string password, byte[] salt, int iterations, int outputBytes)
         {
             using (Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt))
             {
@@ -45,7 +63,7 @@ namespace BrewBro.Users.Business
             }
         }
 
-        private static bool SlowEquals(IList<byte> a, IList<byte> b)
+        private bool SlowEquals(IList<byte> a, IList<byte> b)
         {
             var diff = (uint)a.Count ^ (uint)b.Count;
 
@@ -63,7 +81,7 @@ namespace BrewBro.Users.Business
         /// <param name="password">The password to check.</param>
         /// <param name="correctHash">A hash of the correct password.</param>
         /// <returns>True if the password is correct. False otherwise.</returns>
-        public static bool ValidatePassword(string password, string correctHash)
+        public bool ValidatePassword(string password, string correctHash)
         {
             // Extract the parameters from the hash
             char[] delimiter = { ':' };
@@ -76,16 +94,22 @@ namespace BrewBro.Users.Business
             return SlowEquals(hash, testHash);
         }
 
+        public void Register(User user)
+        {
+            //TODO Server-side validation
+            user.Password = CreateHash(user.Password);
+            _Repo.Add(user);
+        }
+
         /// <summary>
         /// Authenticates the specified user by email and password.
         /// </summary>
         /// <param name="email">The email.</param>
         /// <param name="password">The password.</param>
         /// <returns></returns>
-        public static User Authenticate(string email, string password)
+        public User Authenticate(string email, string password)
         {
-            IUsersRepository<User> _Repo = new UsersRepository();
-            User foundByEmail = _Repo.GetByEmail(email);
+            User foundByEmail = GetByEmail(email);
 
             if(foundByEmail == null)
             {
@@ -98,6 +122,32 @@ namespace BrewBro.Users.Business
             }
 
             
+        }
+
+        /// <summary>
+        /// Gets a user based on email address.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
+        public User GetByEmail(string email)
+        {
+            return _Repo.Query(u => u.Email.ToLower() == email.ToLower()).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Searches users that match specified search text.
+        /// </summary>
+        /// <param name="searchText">The search text.</param>
+        /// <returns></returns>
+        public List<User> Search(string searchText)
+        {
+            List<User> retVal = _Repo.Query(u => u.Name.ToLower().StartsWith(searchText.ToLower()) || u.Email.ToLower().StartsWith(searchText.ToLower())).ToList();
+
+            //Remove the password from search results for security
+            //TODO possibly move password to different collection
+            retVal.AsParallel().ForAll(x => x.Password = null);
+
+            return retVal;
         }
     }
 }

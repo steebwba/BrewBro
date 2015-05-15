@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace BrewBro.Users.Data.Interfaces
 {
-    public interface IUsersRepository<T> : IBrewBroRepo<T> where T : User
-    {
-        List<User> Search(string searchText);
+    //public interface IUsersRepository<T> : IRepository<T> where T : User
+    //{
+    //    IQueryable<User> Search(string searchText);
 
-        User GetByEmail(string email);
-    }
+    //    User GetByEmail(string email);
+    //}
 }

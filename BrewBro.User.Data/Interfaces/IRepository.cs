@@ -1,14 +1,18 @@
-﻿using System;
+﻿using BrewBro.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BrewBro.Users.Data.Interfaces
 {
-    public interface IBrewBroRepo<T> where T : class
+    public interface IRepository<T> where T : BaseEntity
     {
-        IEnumerable<T> GetAll();
+        IList<T> GetAll();
+
+        IList<T> Query(Expression<Func<T, bool>> filter);
         void Add(T item);
         void Delete(T item);
         void Update(T item);

@@ -15,7 +15,7 @@ namespace BrewBro.Controllers
         [HttpPost]
         public HttpResponseMessage Post(User user)
         {
-            User authenticatedUser = Business.Users.Authenticate(user.Email, user.Password);
+            User authenticatedUser = new Business.Users().Authenticate(user.Email, user.Password);
 
             if (authenticatedUser != null)
             {

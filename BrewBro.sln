@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Users.Data", "BrewB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BAL", "BAL", "{ED2A01B5-9A1F-4308-9584-94143E633AC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Users.Business", "Zeel.Business.Users\BrewBro.Users.Business.csproj", "{B156AF74-CD37-4B8C-95FD-74614B4E9036}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewBro.Users.Business", "BrewBro.Business.Users\BrewBro.Users.Business.csproj", "{B156AF74-CD37-4B8C-95FD-74614B4E9036}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
