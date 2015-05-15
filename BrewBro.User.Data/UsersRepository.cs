@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace BrewBro.Users.Data
 {
+    //TODO Error logging
     public class UsersRepository : IRepository<User>
     {
         MongoClient _Repo = new MongoClient(ConfigurationManager.ConnectionStrings["default"].ConnectionString);
@@ -32,17 +33,17 @@ namespace BrewBro.Users.Data
         public void Add(User item)
         {
             item.Id = Guid.NewGuid();
-            _Collection.InsertOneAsync(item).RunSynchronously();
+            Task.WaitAll(_Collection.InsertOneAsync(item));
         }
 
         public void Delete(User item)
         {
-            _Collection.DeleteOneAsync(u => u.Id == item.Id).RunSynchronously();
+            Task.WaitAll(_Collection.DeleteOneAsync(u => u.Id == item.Id));
         }
 
         public void Update(User item)
         {
-            _Collection.ReplaceOneAsync(x => x.Id == item.Id, item).RunSynchronously();
+            Task.WaitAll(_Collection.ReplaceOneAsync(x => x.Id == item.Id, item));
         }
 
         public User FindById(Guid Id)

@@ -7,6 +7,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using BrewBro.Users.Entities;
 
 namespace BrewBro
 {

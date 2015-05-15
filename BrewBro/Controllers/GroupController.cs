@@ -1,4 +1,6 @@
-﻿using BrewBro.Users.Entities;
+﻿using BrewBro.Users.Business;
+using BrewBro.Users.Entities;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -11,27 +13,29 @@ namespace BrewBro.Controllers
 {
     public class GroupController : ApiController
     {
+        Groups _BAL = new Groups();
+
         [HttpGet]
-        public IEnumerable<Group> LoadAllGroups()
+        public List<Group> Get(string searchText)
         {
-            return new List<Group>()
+            return _BAL.Search(searchText);
+        }
+
+        [HttpGet]
+        public Group Get(Guid id)
+        {
+            return
+            new Group()
             {
-                new Group(){
-                    Id = Guid.NewGuid(),
-                    Name = "Test Group 1"
-
-                },
-                new Group(){
-                    Id = Guid.NewGuid(),
-                    Name = "Test Group 2"
-
-                }
+                Id = Guid.NewGuid(),
+                Name = "Test Group 1"
 
             };
         }
 
-        public void Post(JObject group)
+        public void Post(Group group)
         {
+            _BAL.Save(group);
         }
       
     }

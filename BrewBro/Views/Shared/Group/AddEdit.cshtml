@@ -17,8 +17,8 @@
                         <button class="btn btn-default" type="button" ng-click="searchUsers()"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
                 </div>
-                <div class="control-group" ng-if="Group.Users.length > 0">
-                    <div ng-repeat="user in Group.Users" class="checkbox">
+                <div class="control-group" ng-if="Group.UsersToSelect.length > 0">
+                    <div ng-repeat="user in Group.UsersToSelect" class="checkbox">
                         <checkbox ng-model="user.Selected"></checkbox>
                         {{user.Name}}
                     </div>
