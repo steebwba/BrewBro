@@ -13,15 +13,18 @@ namespace BrewBro.Users.Business
     public class Groups
     {
         IRepository<Group> _Repo;
+        Users _UserBAL;
 
         public Groups()
         {
             _Repo = new GroupsRepository();
+            _UserBAL = new Users();
         }
 
-        public Groups(IRepository<Group> repo)
+        public Groups(IRepository<Group> repo, IRepository<User> userRepo)
         {
             _Repo = repo;
+            _UserBAL = new Users(userRepo);
         }
 
         public void Save(Group group)
@@ -40,14 +43,24 @@ namespace BrewBro.Users.Business
         {
             Expression<Func<Group, bool>> filter;
 
-            if(string.IsNullOrWhiteSpace(searchText))
+            if (string.IsNullOrWhiteSpace(searchText))
             {
                 filter = (u => !u.Deleted);
             }
-            else{
-                 filter = (u => u.Name.ToLower().StartsWith(searchText.ToLower()) && !u.Deleted);
+            else
+            {
+                filter = (u => u.Name.ToLower().StartsWith(searchText.ToLower()) && !u.Deleted);
             }
             return _Repo.Query(filter).ToList();
+        }
+
+        public Group Load(Guid id)
+        {
+            Group retVal = _Repo.FindById(id);
+
+            retVal.Users = _UserBAL.Load(retVal.Users.Select(u => u.Id));
+
+            return retVal;
         }
     }
 }

@@ -21,6 +21,6 @@ namespace BrewBro.Users.Entities
 
         [JsonProperty("Users")]
         [BsonIgnoreIfNull]
-        List<User> Users { get; set; }
+        public List<User> Users { get; set; }
     }
 }

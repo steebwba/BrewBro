@@ -8,6 +8,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
 using BrewBro.Users.Entities;
+using System.Web.Optimization;
 
 namespace BrewBro
 {
@@ -19,6 +20,8 @@ namespace BrewBro
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //TODO try to get .less implementation working
+            BundleTable.Bundles.Add(new LessBundle("~/Content/less").Include("~/Content/*.less"));
         }
     }
 }

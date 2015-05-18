@@ -36,11 +36,6 @@ namespace BrewBro.Users.Data
             return _Collection.Find(filter).ToListAsync().Result;
         }
 
-        private async Task<List<Group>> DoSearch(Expression<Func<Group, bool>> filter)
-        {
-            return await _Collection.Find(filter).ToListAsync().ConfigureAwait(false);
-        }
-
         public void Add(Group item)
         {
             item.Id = Guid.NewGuid();
@@ -59,7 +54,7 @@ namespace BrewBro.Users.Data
 
         public Group FindById(Guid Id)
         {
-            throw new NotImplementedException();
+            return _Collection.Find(u => u.Id == Id).FirstAsync().Result;
         }
     }
 }

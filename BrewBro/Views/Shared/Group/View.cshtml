@@ -1,0 +1,24 @@
+﻿
+<div class="jumbotron">
+    <div class="container">
+        <h1>{{Group.Name}}</h1>
+        <button start-brew groupid="{{Group.Id}}" styling="btn-primary btn-lg" show-text="true" ng-if="Group.Users.length > 1"></button>
+    </div>
+</div>
+
+<div class="container">
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="user in Group.Users">
+            <div class="v-middle">
+                {{user.Name}}
+            </div>
+            <div class="v-middle">
+                <div class="pull-right btn-group">
+                    <!-- TODO: conditional click and title based on if the group owner is the logged in user -->
+                    <button class="btn btn-default" type="button" title="Initiate Vote to Kick"><i class="fa fa-user-times"></i></button>
+                </div>
+            </div>
+         
+        </li>
+    </ul>
+</div>

@@ -1,27 +1,33 @@
 ﻿<form name="frmRegistration" ng-controlller="registerController" ng-submit="register()">
-    <div class="modal-header">
-        <h3 class="modal-title">Join the club, bro</h3>
-    </div>
-    <div class="modal-body">
-        <div class="form-group" show-errors>
-            <label for="txtEmail">Email address</label>
-            <input type="email" class="form-control" id="txtEmail" name="email" placeholder="Enter Email" ng-model="User.Email" required>
+    @*<div class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">*@
+                <div class="modal-header">
+                    <h3 class="modal-title">Join the club, bro</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" show-errors>
+                        <label for="txtEmail">Email address</label>
+                        <input type="email" class="form-control" id="txtEmail" name="email" placeholder="Enter Email" ng-model="User.Email" required>
+                    </div>
+                    <div class="form-group" show-errors>
+                        <label for="txtUsername">Username</label>
+                        <input type="text" class="form-control" id="txtUsername" name="username" placeholder="Enter Username" ng-model="User.Name" ng-minlength="3" mg-maxlength="50" ng-pattern="/^[a-zA-Z0-9_]+$/" required>
+                    </div>
+                    <div class="form-group" show-errors>
+                        <label for="txtPassword">Password</label>
+                        <input type="password" class="form-control" id="txtPassword" name="password" placeholder="Enter Password" ng-model="User.Password" ng-minlength="5" mg-maxlength="50" required>
+                    </div>
+                    <div class="form-group" show-errors>
+                        <label for="txtPasswordConfirm">Confirm Password</label>
+                        <input type="password" class="form-control" id="txtPasswordConfirm" name="confirmPassword" placeholder="Confirm Password" required ng-minlength="5" mg-maxlength="50" bb-match="User.Password" ng-model="User.ConfirmPassword">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit">Register</button>
+                    <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+                </div>
+            @*</div>
         </div>
-        <div class="form-group" show-errors>
-            <label for="txtUsername">Username</label>
-            <input type="text" class="form-control" id="txtUsername" name="username" placeholder="Enter Username" ng-model="User.Name" required>
-        </div>
-        <div class="form-group" show-errors>
-            <label for="txtPassword">Password</label>
-            <input type="password" class="form-control" id="txtPassword" name="password" placeholder="Enter Password" ng-model="User.Password" required>
-        </div>
-        <div class="form-group" show-errors>
-            <label for="txtPasswordConfirm">Confirm Password</label>
-            <input type="password" class="form-control" id="txtPasswordConfirm" name="confirmPassword" placeholder="Confirm Password" required bb-match="User.Password" ng-model="User.ConfirmPassword">
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="submit">Register</button>
-        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
-    </div>
+    </div>*@
 </form>

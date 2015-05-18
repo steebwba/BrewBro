@@ -141,13 +141,27 @@ namespace BrewBro.Users.Business
         /// <returns></returns>
         public List<User> Search(string searchText)
         {
-            List<User> retVal = _Repo.Query(u => u.Name.ToLower().StartsWith(searchText.ToLower()) || u.Email.ToLower().StartsWith(searchText.ToLower())).ToList();
+            IList<User> retVal = _Repo.Query(u => u.Name.ToLower().StartsWith(searchText.ToLower()) || u.Email.ToLower().StartsWith(searchText.ToLower()));
 
+            RemovePasswordsFromResults(retVal);
+
+            return retVal.ToList();
+        }
+
+        public List<User> Load(IEnumerable<Guid> ids)
+        {
+            IList<User> retVal = _Repo.Query(u => ids.Contains(u.Id));
+
+            RemovePasswordsFromResults(retVal);
+
+            return retVal.ToList();
+        }
+
+        private void RemovePasswordsFromResults(IEnumerable<User> users)
+        {
             //Remove the password from search results for security
             //TODO possibly move password to different collection
-            retVal.AsParallel().ForAll(x => x.Password = null);
-
-            return retVal;
+            users.AsParallel().ForAll(u => u.Password = null);
         }
     }
 }

@@ -1,16 +1,29 @@
 ﻿
-<div style="display: table; table-layout: fixed; width: 100%;padding: 10px;">
-    <div style="display: table-cell">
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="group in groups">{{group.Name}}</li>
-        </ul>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Groups</h1>
+        <button type="button" class="btn btn-primary btn-lg" ng-click="showNewGroupForm()"><i class="fa fa-plus" style="color: white;"></i> Add Group</button>
     </div>
-    <div style="display: table-cell; width: 100px; padding: 10px;">
-        <div ng-controller="groupCreateController as grp">
-            <input type="button" class="btn btn-success" value="+" ng-click="showNewGroupForm()" />
-            <div ng-if="editMode" class="new-form" id="divNewGroup">
-                <div ng-include src="'/Home/NewGroup'"></div>
+</div>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="group in groups">
+                        <div class="v-middle">
+                            {{group.Name}}
+                        </div>
+                        <div class="v-middle">
+                            <div class="pull-right btn-group">
+                                <button type="button" start-brew groupid="{{group.Id}}" show-as-icon="true" ng-if="group.Users.length > 1"></button>
+                                <button class="btn btn-default" type="button" ng-click="viewGroup(group.Id)"><i class="fa fa-arrow-circle-right"></i></button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </div>       
+        </div>
+
     </div>
 </div>

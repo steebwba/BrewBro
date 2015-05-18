@@ -2,15 +2,6 @@
     cursor: pointer;
 }
 
-.new-form {
-    position: absolute;
-    right: 0;
-    width: 500px;
-    top: 0;
-    bottom: 0;
-    padding: 10px;
-}
-
 .clearfix:after {
     content: " ";
     display: block;
@@ -26,6 +17,15 @@
     vertical-align: middle;
 }
 
-body {
-    padding: 10px;
+.v-middle {
+    vertical-align: middle;
+}
+
+.list-group-item {
+    display: table;
+    width: 100%;
+}
+
+.list-group-item > div {
+    display: table-cell;
 }

@@ -25,6 +25,12 @@ namespace BrewBro.Controllers
             return PartialView("Group/Index");
         }
 
+        public ActionResult ViewGroup()
+        {
+
+            return PartialView("Group/View");
+        }
+
         //TODO Move to correct controllers
         public ActionResult NewGroup()
         {
@@ -41,6 +47,11 @@ namespace BrewBro.Controllers
         public ActionResult Register()
         {
             return PartialView("User/Register");
+        }
+
+        public ActionResult StartBrew()
+        {
+            return PartialView("Brew/Add");
         }
     }
 }

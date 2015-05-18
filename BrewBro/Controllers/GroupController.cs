@@ -24,19 +24,13 @@ namespace BrewBro.Controllers
         [HttpGet]
         public Group Get(Guid id)
         {
-            return
-            new Group()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Test Group 1"
-
-            };
+            return _BAL.Load(id);
         }
 
         public void Post(Group group)
         {
             _BAL.Save(group);
         }
-      
+
     }
 }
