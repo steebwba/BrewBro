@@ -6,24 +6,17 @@
     </div>
 </div>
 <div class="container">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div>
-                <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="group in groups">
-                        <div class="v-middle">
-                            {{group.Name}}
-                        </div>
-                        <div class="v-middle">
-                            <div class="pull-right btn-group">
-                                <button type="button" start-brew group-id="{{group.Id}}" ng-if="group.Users.length > 1"></button>
-                                <button class="btn btn-default" type="button" ng-click="viewGroup(group.Id)"><i class="fa fa-arrow-circle-right"></i></button>
-                            </div> 
-                        </div>
-                    </li>
-                </ul>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="group in groups">
+            <div class="v-middle">
+                {{group.Name}}
             </div>
-        </div>
-
-    </div>
+            <div class="v-middle">
+                <div class="pull-right btn-group">
+                    <button type="button" start-brew group-id="{{group.Id}}" ng-if="group.Users.length > 1"></button>
+                    <button class="btn btn-default" type="button" ng-click="viewGroup(group.Id)"><i class="fa fa-arrow-circle-right"></i></button>
+                </div>
+            </div>
+        </li>
+    </ul>
 </div>

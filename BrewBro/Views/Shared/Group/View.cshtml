@@ -1,31 +1,58 @@
-﻿<form ng-submit="save()">
+﻿<form ng-submit="save()" name="frmGroup">
     <div class="jumbotron">
         <div class="container">
             <!-- TODO: conditional click and title based on if the group owner is the logged in user -->
             <h1 ng-if="!editMode">{{Group.Name}}<button type="button" class="btn btn-default" ng-click="startEdit()"><i class="fa fa-pencil fa-lg"></i></button></h1>
             <div ng-if="editMode">
-                <input type="text" style="font-size: 63px; border: none; background-color: transparent" ng-model="Group.Name" />
+                <input type="text" placeholder="Enter Group Name" style="font-size: 63px; border: none; background-color: transparent" ng-model="GroupEdit.Group.Name" required />
 
             </div>
 
             <button start-brew group-id="{{Group.Id}}" styling="btn-primary btn-lg" show-text="true" ng-if="!editMode && Group.Users.length > 1"></button>
+
             <div class="btn-group" ng-if="editMode">
                 <button class="btn btn-primary" type="submit">Save</button>
-                <button class="btn btn-warning" ng-click="cancelEdit()">Cancel</button>
+                <button ng-if="!addMode" class="btn btn-warning" ng-click="cancelEdit()">Cancel</button>
             </div>
         </div>
     </div>
 
     <div class="container">
+        <div class="panel panel-default" ng-if="editMode">
+            <div class="panel-heading">
+                <h3 class="panel-title">Find Users</h3>
+            </div>
+            <div class="panel-body">
+                <div class="input-group">
+                    <input type="text" id="txtUsers" class="form-control" placeholder="Enter Name" ng-model="GroupEdit.SearchText" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="searchUsers()"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+            <ul class="list-group" ng-if="GroupEdit.UsersToSelect.length > 0">
+                <li class="list-group-item" ng-repeat="user in GroupEdit.UsersToSelect">
+                    <div class="v-middle">
+                        {{user.Name}}
+                    </div>
+                    <div class="v-middle">
+                        <div class="pull-right btn-group">
+                            <button class="btn btn-default" type="button" title="Add to Grpup" ng-click="addUser(user.Id)"><i class="fa fa-user-plus"></i></button>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="user in Group.Users">
+            <li class="list-group-item" ng-repeat="user in getUserList()">
                 <div class="v-middle">
                     {{user.Name}}
                 </div>
                 <div class="v-middle">
                     <div class="pull-right btn-group">
                         <!-- TODO: conditional click and title based on if the group owner is the logged in user -->
-                        <button class="btn btn-default" type="button" title="Initiate Vote to Kick"><i class="fa fa-user-times"></i></button>
+                        <button class="btn btn-default" type="button" title="{{ editMode ? 'Remove User' : 'Initiate Vote to Kick'}}" ng-click="editMode ? removeUser(user.Id) : kickUser(user.Id)"><i class="fa fa-user-times"></i></button>
                     </div>
                 </div>
 

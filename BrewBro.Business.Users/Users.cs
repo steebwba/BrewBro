@@ -63,7 +63,13 @@ namespace BrewBro.Users.Business
             }
         }
 
-        private bool SlowEquals(IList<byte> a, IList<byte> b)
+        /// <summary>
+        /// Determines if the 2 hashes match.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="b">The b.</param>
+        /// <returns></returns>
+        private bool HashEquals(IList<byte> a, IList<byte> b)
         {
             var diff = (uint)a.Count ^ (uint)b.Count;
 
@@ -81,7 +87,7 @@ namespace BrewBro.Users.Business
         /// <param name="password">The password to check.</param>
         /// <param name="correctHash">A hash of the correct password.</param>
         /// <returns>True if the password is correct. False otherwise.</returns>
-        public bool ValidatePassword(string password, string correctHash)
+        public bool HashEquals(string password, string correctHash)
         {
             // Extract the parameters from the hash
             char[] delimiter = { ':' };
@@ -91,7 +97,7 @@ namespace BrewBro.Users.Business
             byte[] hash = Convert.FromBase64String(split[PBKDF2Index]);
 
             byte[] testHash = PBKDF2(password, salt, iterations, hash.Length);
-            return SlowEquals(hash, testHash);
+            return HashEquals(hash, testHash);
         }
 
         public void Register(User user)

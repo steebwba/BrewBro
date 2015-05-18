@@ -31,12 +31,6 @@ namespace BrewBro.Controllers
             return PartialView("Group/View");
         }
 
-        //TODO Move to correct controllers
-        public ActionResult NewGroup()
-        {
-            return PartialView("Group/AddEdit");
-        }
-
         [HttpGet]
         public ActionResult Login()
         {

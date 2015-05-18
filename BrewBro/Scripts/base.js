@@ -31,6 +31,13 @@ appModule.config(['$routeProvider', 'showErrorsConfigProvider', function ($route
         templateUrl: 'Home/ViewGroup',
         controller: 'groupViewController'
     })
+    .when(
+        '/Groups/Add',
+        {
+            templateUrl: 'Home/ViewGroup',
+            controller: 'groupViewController'
+        }
+    )
     .otherwise({
         redirectTo: '/Home'
     });

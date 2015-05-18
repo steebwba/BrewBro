@@ -33,4 +33,5 @@
 .jumbotron .btn.btn-default{
     background-color: transparent;
     border: none;
+    margin-left: 5px;
 }

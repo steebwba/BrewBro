@@ -907,7 +907,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Views\Shared\Brew\Add.cshtml" />
-    <None Include="Views\Shared\Group\AddEdit.cshtml" />
     <Content Include="template\accordion\accordion-group.html" />
     <Content Include="template\accordion\accordion.html" />
     <Content Include="template\alert\alert.html" />

@@ -27,9 +27,12 @@ namespace BrewBro.Controllers
             return _BAL.Load(id);
         }
 
-        public void Post(Group group)
+        public Group Post(Group group)
         {
             _BAL.Save(group);
+
+            //Return the saved group with populatedb Id. This will be a new Guid if a new group is created, or the existing group Id if editing
+            return group;
         }
 
     }
