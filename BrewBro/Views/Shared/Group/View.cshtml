@@ -1,24 +1,35 @@
-﻿
-<div class="jumbotron">
-    <div class="container">
-        <h1>{{Group.Name}}</h1>
-        <button start-brew groupid="{{Group.Id}}" styling="btn-primary btn-lg" show-text="true" ng-if="Group.Users.length > 1"></button>
-    </div>
-</div>
+﻿<form ng-submit="save()">
+    <div class="jumbotron">
+        <div class="container">
+            <!-- TODO: conditional click and title based on if the group owner is the logged in user -->
+            <h1 ng-if="!editMode">{{Group.Name}}<button type="button" class="btn btn-default" ng-click="startEdit()"><i class="fa fa-pencil fa-lg"></i></button></h1>
+            <div ng-if="editMode">
+                <input type="text" style="font-size: 63px; border: none; background-color: transparent" ng-model="Group.Name" />
 
-<div class="container">
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="user in Group.Users">
-            <div class="v-middle">
-                {{user.Name}}
             </div>
-            <div class="v-middle">
-                <div class="pull-right btn-group">
-                    <!-- TODO: conditional click and title based on if the group owner is the logged in user -->
-                    <button class="btn btn-default" type="button" title="Initiate Vote to Kick"><i class="fa fa-user-times"></i></button>
+
+            <button start-brew group-id="{{Group.Id}}" styling="btn-primary btn-lg" show-text="true" ng-if="!editMode && Group.Users.length > 1"></button>
+            <div class="btn-group" ng-if="editMode">
+                <button class="btn btn-primary" type="submit">Save</button>
+                <button class="btn btn-warning" ng-click="cancelEdit()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="user in Group.Users">
+                <div class="v-middle">
+                    {{user.Name}}
                 </div>
-            </div>
-         
-        </li>
-    </ul>
-</div>
+                <div class="v-middle">
+                    <div class="pull-right btn-group">
+                        <!-- TODO: conditional click and title based on if the group owner is the logged in user -->
+                        <button class="btn btn-default" type="button" title="Initiate Vote to Kick"><i class="fa fa-user-times"></i></button>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+</form>

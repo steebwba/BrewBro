@@ -1,4 +1,6 @@
-﻿(function () {
+﻿//This directive will only work if added as an attribute (e.g. <button start-brew groupid="idForGroup" />)
+//It will display a modal popup to initiate a brew for a given group
+(function () {
     var app = angular.module('directivesModule', []);
 
     app.directive('startBrew', function ($compile) {
@@ -11,7 +13,7 @@
                     animation: true,
                     resolve: {
                         GroupId: function () {
-                            return $scope.GroupId;
+                            return $scope.groupId;
                         }
                     }
                 });
@@ -19,9 +21,8 @@
         }
 
         var loadTemplate = function ($scope, $element, $attrs) {
-
-            $attrs.$observe('groupid', function (value) {
-                $scope.GroupId = value;
+            $attrs.$observe('group-id', function (value) {
+                $scope.groupId = value;
             });
 
             var cssClass = 'btn';
@@ -45,23 +46,18 @@
             else {
                 $element.addClass('btn-default');
             }
-
-
-            //Inject the brew button into the DOM when this directive is declared
-            // $element[0].innerHTML = ($scope.showAsIcon) ? '<button start-brew type="button" ng-click="brew()" class="btn btn-default"></button>' : '<button type="button" ng-click="brew()" class="btn btn-primary">Start Brew!</button>';
-
-            //$compile($element)($scope);
         }
 
         return {
             restrict: 'A',
             controller : controller,
             scope: {
-                GroupId: '@',
+                groupId: '@',
                 showText: '=',
                 styling: '@styling',
             },
-            link: loadTemplate
+            link: loadTemplate,
+            require: '?groupid'
         };
     });
 

@@ -39,7 +39,29 @@ groupControllers.controller('groupHomeController',
 
 groupControllers.controller('groupViewController',
   function ($scope, $http, $location, $modal, $routeParams, GroupService) {
-      $scope.Group = {}
+      $scope.Group = {};
+      $scope.GroupEdit = {};
+      $scope.editMode = false;
+      $scope.startEdit = function () {
+          $scope.editMode = true;
+          //clone the object so we can get back to it if we cancel
+          $scope.GroupEdit = JSON.parse(JSON.stringify($scope.Group));
+      }
+      $scope.cancelEdit = function () {
+          $scope.editMode = false;
+          $scope.GroupEdit = {};
+      }
+      $scope.save = function () {
+          GroupService.save($scope.Group, function () {
+              alert('yay!');
+              $scope.GroupEdit = {};
+          }, function () {
+              alert('error!');
+          });
+         
+      }
+
+
       GroupService.get({ id: $routeParams.id }, function (data) {
           $scope.Group = data;
       });
@@ -47,7 +69,6 @@ groupControllers.controller('groupViewController',
   });
 groupControllers.controller('groupCreateController',
   function ($scope, $http, $location, GroupService, $modalInstance) {
-      $scope.editMode = false;
       $scope.Group = {
           Name: '',
           Users: [],
@@ -81,7 +102,6 @@ groupControllers.controller('groupCreateController',
 
           GroupService.save($scope.Group, function () {
               $scope.$emit('groupAdded');
-              $scope.editMode = false;
               alert('yay!');
           }, function () {
               alert('error!');

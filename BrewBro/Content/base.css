@@ -29,3 +29,8 @@
 .list-group-item > div {
     display: table-cell;
 }
+
+.jumbotron .btn.btn-default{
+    background-color: transparent;
+    border: none;
+}
