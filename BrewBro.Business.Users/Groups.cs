@@ -41,16 +41,8 @@ namespace BrewBro.Users.Business
 
         public List<Group> Search(string searchText)
         {
-            Expression<Func<Group, bool>> filter;
+            Expression<Func<Group, bool>> filter = (u => u.Name.ToLower().StartsWith((searchText ?? string.Empty).ToLower()));
 
-            if (string.IsNullOrWhiteSpace(searchText))
-            {
-                filter = (u => !u.Deleted);
-            }
-            else
-            {
-                filter = (u => u.Name.ToLower().StartsWith(searchText.ToLower()) && !u.Deleted);
-            }
             return _Repo.Query(filter).ToList();
         }
 

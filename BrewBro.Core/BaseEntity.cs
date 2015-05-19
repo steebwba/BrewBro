@@ -8,6 +8,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace BrewBro.Core
 {
+    [BsonIgnoreExtraElements]
     [JsonObject(MemberSerialization.OptOut)]
     public class BaseEntity : BrewBro.Core.Interfaces.IEntity
     {

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace BrewBro.Users.Entities
 {
     [JsonObject(MemberSerialization.OptOut)]
+    [BsonIgnoreExtraElements]
     public class User : BaseEntity
     {
         /// <summary>
@@ -20,6 +21,8 @@ namespace BrewBro.Users.Entities
         /// <value>
         /// The name.
         /// </value>
+        [BsonIgnoreIfDefault]
+        [BsonIgnoreIfNull]
         public string Name { get; set; }
         /// <summary>
         /// Gets or sets the email.
@@ -27,6 +30,8 @@ namespace BrewBro.Users.Entities
         /// <value>
         /// The email.
         /// </value>
+        [BsonIgnoreIfDefault]
+        [BsonIgnoreIfNull]
         public string Email { get; set; }
 
         /// <summary>
@@ -35,6 +40,8 @@ namespace BrewBro.Users.Entities
         /// <value>
         /// The password.
         /// </value>
+        [BsonIgnoreIfDefault]
+        [BsonIgnoreIfNull]
         public string Password { get; set; }
     }
 }

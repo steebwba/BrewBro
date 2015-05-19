@@ -15,7 +15,9 @@ userControllers.controller('loginController',
               $http.post('api/Auth',
                       $scope.User
                   )
-                .success(function () {
+                .success(function (data) {
+                    sessionStorage.setItem('userToken', JSON.stringify(data));
+
                     $location.path('/Groups');
                 })
                 .error(function () {

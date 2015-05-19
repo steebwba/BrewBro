@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 namespace BrewBro.Users.Entities
 {
     [JsonObject(MemberSerialization.OptOut)]
+    [BsonIgnoreExtraElements]
     public class Group : BaseEntity
     {
-        public Group()
-        {
-            Users = new List<User>();
-        }
         public string Name { get; set; }
 
         [JsonProperty("Users")]
+        [BsonIgnoreIfDefault]
         [BsonIgnoreIfNull]
         public List<User> Users { get; set; }
+
+        public User Owner { get; set; }
     }
 }

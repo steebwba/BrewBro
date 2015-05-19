@@ -120,9 +120,16 @@ groupControllers.controller('groupViewController',
           if ($scope.frmGroup.$valid) {
               GroupService.save($scope.GroupEdit.Group, function (data) {
                   if ($scope.addMode) {
+                      var ownerId = JSON.parse(sessionStorage.getItem('userToken')).Id;
+
+                      $scope.GroupEdit.Group.Owner = {
+                          Id: ownerId
+                      };
+
                       $location.path('/Groups/' + data.Id);
                   }
                   else {
+                      //clone object to prevent undesired modifications by reference
                       $scope.Group = JSON.parse(JSON.stringify($scope.GroupEdit.Group));
                       resetEdit();
                   }
