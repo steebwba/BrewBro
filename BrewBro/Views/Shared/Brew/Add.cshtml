@@ -3,9 +3,25 @@
         <h3 class="modal-title">Get a brew on, bro!</h3>
     </div>
     <div class="modal-body">
-       
+        <div ng-if="Brewing">
+            <h4>{{Brew.SelectedUser.Name}}</h4>
+            <div ng-if="Countdown > 0">{{Countdown}}</div>
+        </div>
+
+        <div ng-if="!Brewing">
+            <h4>Select who's in</h4>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="user in Group.Users">
+                    <checkbox ng-model="user.Selected"></checkbox> {{user.Name}}
+                </li>
+            </ul>
+        </div>
+
     </div>
+
+
     <div class="modal-footer">
+        <button type="button" ng-if="!Brewing" ng-click="doBrew()" class="btn btn-primary">Brew!</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">Close</button>
     </div>
 </div>

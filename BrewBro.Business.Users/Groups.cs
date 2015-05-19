@@ -21,10 +21,10 @@ namespace BrewBro.Users.Business
             _UserBAL = new Users();
         }
 
-        public Groups(IRepository<Group> repo, IRepository<User> userRepo)
+        public Groups(IRepository<Group> repo, Users userBAL)
         {
             _Repo = repo;
-            _UserBAL = new Users(userRepo);
+            _UserBAL = userBAL;
         }
 
         public void Save(Group group)

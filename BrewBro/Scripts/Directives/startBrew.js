@@ -37,6 +37,8 @@
 
             $element[0].innerHTML = ($scope.showText) ? '<i class="fa fa-coffee"></i>&nbsp;Start Brew!' : '<i class="fa fa-coffee"></i>';
 
+            //makes sure the button is not a submit!
+            $element.attr('type', 'button');
 
             $element.addClass('btn');
 
@@ -56,6 +58,7 @@
                 showText: '=',
                 styling: '@styling',
             },
+            transclude: true,
             link: loadTemplate,
             require: '?groupid'
         };

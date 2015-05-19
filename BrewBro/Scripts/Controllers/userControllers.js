@@ -12,7 +12,7 @@ userControllers.controller('loginController',
       $scope.login = function () {
           $scope.$broadcast('show-errors-check-validity');
           if ($scope.frmLogin.$valid) {
-              $http.post('/api/Auth',
+              $http.post('api/Auth',
                       $scope.User
                   )
                 .success(function () {
@@ -47,7 +47,7 @@ userControllers.controller('registerController',
           $scope.$broadcast('show-errors-check-validity');
 
           if ($scope.frmRegistration.$valid) {
-              $http.post('/api/User',
+              $http.post('api/User',
                    $scope.User
               )
                 .success(function () {

@@ -63,12 +63,6 @@ namespace BrewBro.Users.Business
             }
         }
 
-        /// <summary>
-        /// Determines if the 2 hashes match.
-        /// </summary>
-        /// <param name="a">a.</param>
-        /// <param name="b">The b.</param>
-        /// <returns></returns>
         private bool HashEquals(IList<byte> a, IList<byte> b)
         {
             var diff = (uint)a.Count ^ (uint)b.Count;
@@ -87,7 +81,7 @@ namespace BrewBro.Users.Business
         /// <param name="password">The password to check.</param>
         /// <param name="correctHash">A hash of the correct password.</param>
         /// <returns>True if the password is correct. False otherwise.</returns>
-        public bool HashEquals(string password, string correctHash)
+        public bool ValidatePassword(string password, string correctHash)
         {
             // Extract the parameters from the hash
             char[] delimiter = { ':' };

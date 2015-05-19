@@ -895,6 +895,7 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <Content Include="Scripts\Services\brews.js" />
     <Content Include="Scripts\Services\groups.js" />
     <Content Include="Views\Home\Landing.cshtml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
@@ -942,6 +943,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\BrewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\UserController.cs" />

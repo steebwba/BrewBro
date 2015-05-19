@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF62FEBE-B2B0-4644-8E6C-46FA9D84F7CC}</ProjectGuid>
+    <ProjectGuid>{D3CB0A5F-7E66-47E6-BEB9-41FB06DB2B8B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BrewBro.Users.Data</RootNamespace>
-    <AssemblyName>BrewBro.Users.Data</AssemblyName>
+    <RootNamespace>BrewBro.Brew.Entities</RootNamespace>
+    <AssemblyName>BrewBro.Brew.Entities</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,23 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MongoDB">
-      <HintPath>..\..\..\..\Documents\MongoDB\MongoDB.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Bson, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MongoDB.Bson.2.0.0\lib\net45\MongoDB.Bson.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MongoDB.Driver.2.0.0\lib\net45\MongoDB.Driver.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver.Core, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MongoDB.Driver.Core.2.0.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,10 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrewRepository.cs" />
-    <Compile Include="GroupsRepository.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="UsersRepository.cs" />
+    <Compile Include="BrewHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,16 +47,6 @@
       <Project>{230c5713-dfe7-4ac5-8cb4-37f22ef6a3d2}</Project>
       <Name>BrewBro.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BrewBro.Users.Entities\BrewBro.Users.Entities.csproj">
-      <Project>{eb089db5-ba41-4c72-9e29-2bb28953214d}</Project>
-      <Name>BrewBro.Users.Entities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\MongoDB.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

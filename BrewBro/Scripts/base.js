@@ -4,6 +4,7 @@
                                             'userControllers',
                                             'brewControllers',
                                             'groupServices',
+                                            'brewServices',
                                             'ngAnimate',
                                             'ui.checkbox',
                                             'ui.bootstrap.showErrors',

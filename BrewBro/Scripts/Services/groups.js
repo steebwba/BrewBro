@@ -3,5 +3,5 @@
 
 projectServices.factory('GroupService',
   function ($resource) {
-      return $resource('/api/Group/:id');
+      return $resource('api/Group/:id');
   });

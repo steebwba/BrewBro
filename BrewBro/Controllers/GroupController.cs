@@ -24,7 +24,14 @@ namespace BrewBro.Controllers
         [HttpGet]
         public Group Get(Guid id)
         {
-            return _BAL.Load(id);
+            Group group = _BAL.Load(id);
+            if(group == null)
+            {
+                //TODO log exception
+                var response = new HttpResponseMessage(HttpStatusCode.NotFound) { Content = new StringContent("Unable to find any results") };
+                throw new HttpResponseException(response);
+            }
+            return group;
         }
 
         public Group Post(Group group)

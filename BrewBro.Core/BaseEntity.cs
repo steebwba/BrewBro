@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace BrewBro.Core
 {
@@ -23,6 +24,7 @@ namespace BrewBro.Core
         /// <value>
         ///   <c>true</c> if selected; otherwise, <c>false</c>.
         /// </value>
+        [BsonIgnore]
         public bool Selected { get; set; }
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="BaseEntity"/> is deleted.
@@ -30,6 +32,7 @@ namespace BrewBro.Core
         /// <value>
         ///   <c>true</c> if deleted; otherwise, <c>false</c>.
         /// </value>
+        [BsonIgnore]
         public bool Deleted { get; set; }
     }
 }
