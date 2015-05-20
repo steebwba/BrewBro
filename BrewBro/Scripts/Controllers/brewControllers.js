@@ -1,7 +1,7 @@
 ﻿var brewControllers = angular.module('brewControllers', []);
 
 brewControllers.controller('brewController',
-  function ($scope, $http, $location, $modalInstance, GroupId, GroupService, BrewService) {
+  function ($scope, $http, $location, $modalInstance, GroupId, GroupService, BrewService, Auth) {
       $scope.Brew = {
           GroupId: GroupId,
           SelectedUser: null
@@ -66,8 +66,9 @@ brewControllers.controller('brewController',
       }
 
       $scope.getUsers = function () {
+          var user = Auth.getUser();
           if (typeof ($scope.Group.Users) != 'undefined') {
-              return $scope.Group.Users.filter(function (el) { return JSON.parse(sessionStorage.getItem('userToken')).Id != el.Id; })
+              return $scope.Group.Users.filter(function (el) { return user.Id != el.Id; })
           }
           else {
               return [];

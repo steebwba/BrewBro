@@ -21,7 +21,7 @@ namespace BrewBro.Controllers
 
             if (authenticatedUser != null)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, new { Id = authenticatedUser.Id, Token = Guid.NewGuid() });
+                return Request.CreateResponse(HttpStatusCode.OK, new { Id = authenticatedUser.Id, Name = authenticatedUser.Name, Token = Guid.NewGuid() });
             }
             else
             {

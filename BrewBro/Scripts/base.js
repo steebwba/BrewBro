@@ -1,17 +1,20 @@
 ﻿var appModule = angular.module('brewBro', ['ngRoute',
                                             'ui.bootstrap',
+                                            'navControllers',
                                             'groupControllers',
                                             'userControllers',
                                             'brewControllers',
-                                            'groupServices',
-                                            'brewServices',
+                                            'userService',
+                                            'groupService',
+                                            'brewService',
                                             'ngAnimate',
                                             'ui.checkbox',
                                             'ui.bootstrap.showErrors',
-                                            'directivesModule']);
+                                            'directivesModule',
+                                            'servicesModule']);
 
 //Defining Routing
-appModule.config(['$routeProvider', 'showErrorsConfigProvider', function ($routeProvider, showErrorsConfigProvider) {
+appModule.config(function ($routeProvider, showErrorsConfigProvider) {
     $routeProvider
     .when('/',
     {
@@ -39,18 +42,25 @@ appModule.config(['$routeProvider', 'showErrorsConfigProvider', function ($route
             controller: 'groupViewController'
         }
     )
+    .when(
+         '/Profile',
+             {
+                templateUrl: 'Home/UserProfile',
+                controller: 'userProfileController'
+             }
+    )
     .otherwise({
-        redirectTo: '/Home'
+        redirectTo: '/'
     });
 
     showErrorsConfigProvider.showSuccess(true);
-}]);
+});
 
 
-appModule.run(function ($rootScope, $location) {
+appModule.run(function ($rootScope, $location, Auth) {
     $rootScope.$on('$routeChangeStart', function (event) {
         //TODO offset to angular service
-        if (sessionStorage.getItem('userToken') == null) {
+        if (!Auth.isLoggedIn()) {
                 $location.path('/');
         }
     });

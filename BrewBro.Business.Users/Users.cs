@@ -157,6 +157,11 @@ namespace BrewBro.Users.Business
             return retVal.ToList();
         }
 
+        public User Load(Guid id)
+        {
+            return _Repo.FindById(id);
+        }
+
         private void RemovePasswordsFromResults(IEnumerable<User> users)
         {
             //Remove the password from search results for security

@@ -16,7 +16,7 @@ namespace BrewBro.Controllers
 
         public ActionResult Landing()
         {
-            return View();
+            return PartialView();
         }
 
         public ActionResult Groups()
@@ -41,6 +41,12 @@ namespace BrewBro.Controllers
         public ActionResult Register()
         {
             return PartialView("User/Register");
+        }
+
+        [HttpGet]
+        public ActionResult UserProfile()
+        {
+            return PartialView("User/Profile");
         }
 
         public ActionResult StartBrew()

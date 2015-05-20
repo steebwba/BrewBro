@@ -1,7 +1,7 @@
 ﻿var groupControllers = angular.module('groupControllers', []);
 
 groupControllers.controller('groupHomeController',
-  function ($scope, $http, $location) {
+  function ($scope, $http, $location, GroupService, Auth) {
       $scope.SearchParameters = {
           GroupName: ''
       }
@@ -9,13 +9,11 @@ groupControllers.controller('groupHomeController',
       $scope.groups = [];
 
       $scope.loadGroups = function () {
-          $http.get('api/Group?searchText=' + $scope.SearchParameters.GroupName).
-              success(function (data, status, headers, config) {
-                  $scope.groups = data;
-              }).
-              error(function (data, status, headers, config) {
-                  alert("error");
-              });
+          GroupService.getByUser({ searchText: $scope.SearchParameters.GroupName, userId: Auth.getUser().Id }, function (data) {
+              $scope.groups = data;
+          }, function () {
+              alert("error");
+          });
       }
 
       $scope.showNewGroupForm = function () {
@@ -30,8 +28,7 @@ groupControllers.controller('groupHomeController',
   });
 
 groupControllers.controller('groupViewController',
-  function ($scope, $http, $location, $routeParams, GroupService) {
-
+  function ($scope, $http, $location, $routeParams, GroupService, Auth) {
       function resetEdit() {
           $scope.editMode = false;
           $scope.GroupEdit = {
@@ -120,7 +117,7 @@ groupControllers.controller('groupViewController',
           if ($scope.frmGroup.$valid) {
               GroupService.save($scope.GroupEdit.Group, function (data) {
                   if ($scope.addMode) {
-                      var ownerId = JSON.parse(sessionStorage.getItem('userToken')).Id;
+                      var ownerId = Auth.getUser().Id;
 
                       $scope.GroupEdit.Group.Owner = {
                           Id: ownerId

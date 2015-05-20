@@ -43,5 +43,9 @@ namespace BrewBro.Users.Entities
         [BsonIgnoreIfDefault]
         [BsonIgnoreIfNull]
         public string Password { get; set; }
+
+        [BsonIgnoreIfDefault]
+        [BsonIgnoreIfNull]
+        public List<Group> Groups { get; set; }
     }
 }

@@ -29,6 +29,12 @@ namespace BrewBro.Controllers
         }
 
 
+        [HttpGet]
+        public User Get(Guid id)
+        {
+            return _BAL.Load(id);
+        }
+
         /// <summary>
         /// Adds a new user
         /// </summary>
@@ -40,6 +46,14 @@ namespace BrewBro.Controllers
             _BAL.Register(user);
 
             return Request.CreateResponse(HttpStatusCode.Created, "User Created");
+        }
+
+        [HttpGet]
+        [Route("User/{userId}/Group")]
+        public List<Group> GetGroups(string searchText)
+        {
+            return new List<Group>();
+           // return _BAL.Search(searchText);
         }
 
     }

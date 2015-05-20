@@ -148,10 +148,12 @@
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\Controllers\brewControllers.js" />
     <Content Include="Scripts\Controllers\groupControllers.js" />
+    <Content Include="Scripts\Controllers\navControllers.js" />
     <Content Include="Scripts\Controllers\userControllers.js" />
     <Content Include="Scripts\Directives\compareValidator.js" />
     <Content Include="Scripts\Directives\startBrew.js" />
     <Content Include="Scripts\Directives\validate.js" />
+    <Content Include="Scripts\Factories\authentication.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -897,6 +899,7 @@
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
     <Content Include="Scripts\Services\brews.js" />
     <Content Include="Scripts\Services\groups.js" />
+    <Content Include="Scripts\Services\users.js" />
     <Content Include="Views\Home\Landing.cshtml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -975,6 +978,7 @@
     <Content Include="Views\Shared\User\Login.cshtml" />
     <Content Include="Views\Shared\User\Register.cshtml" />
     <Content Include="Views\Shared\Group\View.cshtml" />
+    <Content Include="Views\Shared\User\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

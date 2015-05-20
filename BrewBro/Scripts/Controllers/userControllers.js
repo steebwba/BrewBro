@@ -1,7 +1,7 @@
 ﻿var userControllers = angular.module('userControllers', []);
 
 userControllers.controller('loginController',
-  function ($scope, $http, $location, $modal) {
+  function ($scope, $http, $location, $modal, Auth) {
       $scope.rememberUser = false
       $scope.User = {
           Password: '',
@@ -16,8 +16,7 @@ userControllers.controller('loginController',
                       $scope.User
                   )
                 .success(function (data) {
-                    sessionStorage.setItem('userToken', JSON.stringify(data));
-
+                    Auth.setUser(data);
                     $location.path('/Groups');
                 })
                 .error(function () {
@@ -64,4 +63,13 @@ userControllers.controller('registerController',
       $scope.cancel = function () {
           $modalInstance.dismiss('cancel');
       };
+  });
+
+userControllers.controller('userProfileController',
+  function ($scope, $http, $location, UserService, Auth) {
+      $scope.User = Auth.getUser();
+
+      UserService.get({ Id: $scope.User.Id }, function (data) {
+          $scope.User = data;
+      })
   });

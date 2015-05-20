@@ -1,4 +1,4 @@
-﻿projectServices = angular.module('brewServices', ['ngResource']);
+﻿projectServices = angular.module('brewService', ['ngResource']);
 
 
 projectServices.factory('BrewService',
