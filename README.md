@@ -11,4 +11,5 @@ Currently in Alpha state, there are still items to be implemented such as:
 * 'Teabagging' - A flag/penalty system when a user is a repeat-offender for not brewing when picked
 * Robust user authentication
 * Email template
+* Brew weighting system
 * and more!

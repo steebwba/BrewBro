@@ -13,7 +13,7 @@ brewControllers.controller('brewController',
       $scope.Countdown = 5;
 
       //TODO Move to angular service
-      var countDown = function(){
+      var countDown = function () {
           setTimeout(function () {
               $scope.Countdown--;
               if ($scope.Countdown == 0) {
@@ -32,7 +32,7 @@ brewControllers.controller('brewController',
                       },
                       Date: new Date()
                   }, function () {
-     
+
                   },
                   function () {
                       alert('oh no!');
@@ -55,7 +55,7 @@ brewControllers.controller('brewController',
               var users = $scope.Group.Users.filter(function (el) { return el.Selected; });
 
               //Object.getOwnPropertyNames seems to throw an error here, so had to fudge it, in a way, to determine if a user has already been selected
-              var availableUsers = (typeof ($scope.Brew.SelectedUser) == 'undefined' || $scope.Brew.SelectedUser == null) ? users : users.filter(function (el) {  return el.Id != $scope.Brew.SelectedUser.Id; });
+              var availableUsers = (typeof ($scope.Brew.SelectedUser) == 'undefined' || $scope.Brew.SelectedUser == null) ? users : users.filter(function (el) { return el.Id != $scope.Brew.SelectedUser.Id; });
 
               $scope.Brew.SelectedUser = availableUsers[Math.floor(Math.random() * availableUsers.length)];
 
@@ -63,6 +63,15 @@ brewControllers.controller('brewController',
           }, 150);
 
           $scope.brewCountdownEvent = countDown();
+      }
+
+      $scope.getUsers = function () {
+          if (typeof ($scope.Group.Users) != 'undefined') {
+              return $scope.Group.Users.filter(function (el) { return JSON.parse(sessionStorage.getItem('userToken')).Id != el.Id; })
+          }
+          else {
+              return [];
+          }
       }
 
       GroupService.get({ id: GroupId }, function (data) {

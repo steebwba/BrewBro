@@ -45,3 +45,13 @@ appModule.config(['$routeProvider', 'showErrorsConfigProvider', function ($route
 
     showErrorsConfigProvider.showSuccess(true);
 }]);
+
+
+appModule.run(function ($rootScope, $location) {
+    $rootScope.$on('$routeChangeStart', function (event) {
+        //TODO offset to angular service
+        if (sessionStorage.getItem('userToken') == null) {
+                $location.path('/');
+        }
+    });
+});

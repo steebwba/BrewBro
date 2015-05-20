@@ -11,7 +11,7 @@
         <div ng-if="!Brewing">
             <h4>Select who's in</h4>
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="user in Group.Users">
+                <li class="list-group-item" ng-repeat="user in getUsers()">
                     <checkbox ng-model="user.Selected"></checkbox> {{user.Name}}
                 </li>
             </ul>

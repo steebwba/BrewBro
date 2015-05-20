@@ -14,13 +14,16 @@ namespace BrewBro.Users.Entities
     [BsonIgnoreExtraElements]
     public class Group : BaseEntity
     {
+        [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
         public string Name { get; set; }
 
-        [JsonProperty("Users")]
         [BsonIgnoreIfDefault]
         [BsonIgnoreIfNull]
         public List<User> Users { get; set; }
 
+        [BsonIgnoreIfDefault]
+        [BsonIgnoreIfNull]
         public User Owner { get; set; }
     }
 }
