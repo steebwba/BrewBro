@@ -4,7 +4,6 @@
     var app = angular.module('directivesModule', []);
 
     app.directive('startBrew', function ($compile) {
-
         var controller = function ($scope, $modal) {
             $scope.brew = function () {
                 $modal.open({

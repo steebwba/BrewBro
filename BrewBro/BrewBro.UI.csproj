@@ -151,6 +151,7 @@
     <Content Include="Scripts\Controllers\navControllers.js" />
     <Content Include="Scripts\Controllers\userControllers.js" />
     <Content Include="Scripts\Directives\compareValidator.js" />
+    <Content Include="Scripts\Directives\profilePic.js" />
     <Content Include="Scripts\Directives\startBrew.js" />
     <Content Include="Scripts\Directives\validate.js" />
     <Content Include="Scripts\Factories\authentication.js" />

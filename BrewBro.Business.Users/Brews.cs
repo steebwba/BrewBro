@@ -50,10 +50,10 @@ namespace BrewBro.Users.Business
             //Save the history item
             _Repo.Add(historyItem);
 
-            var usersSelected = historyItem.Group.Users.Select(u => u.Id);
-
             //Now its saved, go and send the emails to notify the users in the group
             historyItem.Group = new Groups().Load(historyItem.Group.Id);
+
+            var usersSelected = historyItem.Group.Users.Select(u => u.Id);
             historyItem.Group.Users.RemoveAll(u => !usersSelected.Contains(u.Id));
 
             historyItem.User = historyItem.Group.Users.First(x => x.Id == historyItem.User.Id);

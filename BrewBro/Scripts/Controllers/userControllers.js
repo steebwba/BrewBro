@@ -71,13 +71,14 @@ userControllers.controller('userProfileController',
       $scope.User = Auth.getUser();
       $scope.removeFromGroup = function (id) {
           GroupService.removeUser({ userId: $scope.User.Id, groupId: id }, function () {
-              alert('remove from group');
+              $scope.User.Groups = GroupService.getByUser({ userId: $scope.User.Id });
           }, function () {
               alert('it went wrong!');
           })
 
-      }
-      UserService.get({ Id: $scope.User.Id }, function (data) {
+      };
+
+      UserService.get({ Id: $scope.User.Id }, function (data) {     
           $scope.User = data;
       }, function () {
           alert('it went wrong!');

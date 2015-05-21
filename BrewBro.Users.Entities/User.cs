@@ -44,6 +44,16 @@ namespace BrewBro.Users.Entities
         [BsonIgnoreIfNull]
         public string Password { get; set; }
 
+        /// <summary>
+        /// Gets or sets the profile image filename.
+        /// </summary>
+        /// <value>
+        /// The profile image.
+        /// </value>
+        [BsonIgnoreIfDefault]
+        [BsonIgnoreIfNull]
+        public string ProfileImage { get; set; }
+
         [BsonIgnoreIfDefault]
         [BsonIgnoreIfNull]
         public List<Group> Groups { get; set; }

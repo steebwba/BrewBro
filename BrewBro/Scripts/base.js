@@ -1,4 +1,5 @@
-﻿var appModule = angular.module('brewBro', ['ngRoute',
+﻿//TODO Normalize module names
+var appModule = angular.module('brewBro', ['ngRoute',
                                             'ui.bootstrap',
                                             'navControllers',
                                             'groupControllers',
@@ -12,7 +13,8 @@
                                             'ngAnimate',
                                             'ui.checkbox',
                                             'ui.bootstrap.showErrors',
-                                            'directivesModule']);
+                                            'directivesModule',
+                                            'profilePicDirective']);
 
 //Defining Routing
 appModule.config(function ($routeProvider, showErrorsConfigProvider) {

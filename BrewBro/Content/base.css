@@ -57,6 +57,18 @@ button:active, button:focus {
     outline: none !important;
 }
 
-.hcenter, table.hcenter th{
+.hcenter, table.hcenter th {
     text-align: center !important;
+}
+
+.profile-pic {
+    background-size: contain;
+    width: auto;
+    height: 150px;
+    margin-right: 10px;
+}
+
+nav .profile-pic {
+    height: 19px;
+    vertical-align: bottom;
 }

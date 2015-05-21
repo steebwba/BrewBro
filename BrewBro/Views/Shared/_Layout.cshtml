@@ -28,7 +28,7 @@
             </div>
             <div id="navbarCollapse" class="collapse navbar-collapse" ng-if="userLoggedIn()" collapse="!navBarCollapsed">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/Profile">{{User.Name}}</a></li>
+                    <li><a href="#/Profile"><profile-pic source="{{User.ProfileImage}}"></profile-pic>{{User.Name}}</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
                     <li><a href="#/Groups">Groups</a></li>
@@ -48,6 +48,7 @@
     <script src="~/Scripts/Directives/validate.js"></script>
     <script src="~/Scripts/Directives/compareValidator.js"></script>
     <script src="~/Scripts/Directives/startBrew.js"></script>
+    <script src="~/Scripts/Directives/profilePic.js"></script>
     <script src="~/Scripts/Factories/authentication.js"></script>
     <script src="~/Scripts/Factories/group.js"></script>
     <script src="~/Scripts/base.js"></script>

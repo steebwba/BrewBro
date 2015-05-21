@@ -60,9 +60,13 @@ groupControllers.controller('groupViewController',
           //clone the object so we can get back to it if we cancel
           $scope.GroupEdit.Group = JSON.parse(JSON.stringify($scope.Group));
       }
-      $scope.isGroupOwner = function (userId) {
-          return (typeof (userId) == 'undefined') ? Group.isUserGroupOwner($scope.Group.Owner.Id) : $scope.Group.Owner.Id == userId;
-         
+      $scope.isGroupOwner = function () {
+          return Group.isUserGroupOwner($scope.Group.Owner.Id);
+
+      }
+      $scope.isLoggedInUser = function (userId) {
+          return userId == Auth.getUser().Id;
+
       }
 
       $scope.getUserList = function () {
@@ -127,9 +131,8 @@ groupControllers.controller('groupViewController',
 
           if ($scope.frmGroup.$valid) {
               //No owner, so make the user triggering the save the owner
-              if ($scope.GroupEdit.Group.Owner == null)
-              {
-                  $scope.GroupEdit.Group.Owner = { Id : Auth.getUser().Id }
+              if ($scope.GroupEdit.Group.Owner == null) {
+                  $scope.GroupEdit.Group.Owner = { Id: Auth.getUser().Id }
               }
 
               GroupService.save($scope.GroupEdit.Group, function (data) {
@@ -158,18 +161,19 @@ groupControllers.controller('groupViewController',
       }
 
       $scope.removeUser = function (id) {
-          var userToRemove = $scope.GroupEdit.Group.Users.filter(function (el) { el.Id == id; });
-
-          $scope.GroupEdit.Group.Users.splice(userToRemove);
+          var userIndexToRemove = $scope.GroupEdit.Group.Users.map(function (el) { return el.Id; }).indexOf(id);
+          $scope.GroupEdit.Group.Users.splice(userIndexToRemove, 1);
       }
 
       if ($scope.addMode) {
           $scope.startEdit();
+          var user = Auth.getUser();
+          $scope.GroupEdit.Group.Users = [{ Id: user.Id, Name: user.Name }];
       }
       else {
           GroupService.get({ id: $routeParams.id }, function (data) {
               $scope.Group = data;
-              $scope.BrewHistory = BrewService.query({ groupId : $scope.Group.Id })
+              $scope.BrewHistory = BrewService.query({ groupId: $scope.Group.Id })
           }, function () {
 
           });
