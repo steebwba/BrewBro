@@ -48,21 +48,27 @@ brewControllers.controller('brewController',
 
       $scope.doBrew = function () {
           //TODO Move to angular service
-          $scope.Brewing = true;
-          $scope.brewEvent = setInterval(function () {
+          //get selected users
+          var users = $scope.Group.Users.filter(function (el) { return el.Selected; });
+          if (users.length <= 1) {
+              //TODO toast message or message in popup
+              alert('Select more than 1 person, bro!');
+          }
+          else {
+              $scope.Brewing = true;
+              $scope.brewEvent = setInterval(function () {
+                  //Object.getOwnPropertyNames seems to throw an error here, so had to fudge it, in a way, to determine if a user has already been selected
+                  var availableUsers = (typeof ($scope.Brew.SelectedUser) == 'undefined' || $scope.Brew.SelectedUser == null) ? users : users.filter(function (el) { return el.Id != $scope.Brew.SelectedUser.Id; });
 
-              //get selected users
-              var users = $scope.Group.Users.filter(function (el) { return el.Selected; });
+                  $scope.Brew.SelectedUser = availableUsers[Math.floor(Math.random() * availableUsers.length)];
 
-              //Object.getOwnPropertyNames seems to throw an error here, so had to fudge it, in a way, to determine if a user has already been selected
-              var availableUsers = (typeof ($scope.Brew.SelectedUser) == 'undefined' || $scope.Brew.SelectedUser == null) ? users : users.filter(function (el) { return el.Id != $scope.Brew.SelectedUser.Id; });
+                  $scope.$apply();
+              }, 150);
 
-              $scope.Brew.SelectedUser = availableUsers[Math.floor(Math.random() * availableUsers.length)];
+              $scope.brewCountdownEvent = countDown();
+          }
 
-              $scope.$apply();
-          }, 150);
 
-          $scope.brewCountdownEvent = countDown();
       }
 
       $scope.getUsers = function () {

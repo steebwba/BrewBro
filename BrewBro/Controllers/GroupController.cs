@@ -80,7 +80,7 @@ namespace BrewBro.Controllers
         [HttpDelete]
         public HttpResponseMessage Delete(Guid id)
         {
-            _BAL.RemoveUser(id);
+            _BAL.Delete(id);
 
             return new HttpResponseMessage(HttpStatusCode.NoContent) { Content = new StringContent("Group Deleted") };
         }

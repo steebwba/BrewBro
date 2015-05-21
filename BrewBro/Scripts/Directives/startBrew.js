@@ -35,7 +35,7 @@
 
             $element.on('click', $scope.brew);
 
-            $element[0].innerHTML = ($scope.showText) ? '<i class="fa fa-coffee"></i>&nbsp;Start Brew!' : '<i class="fa fa-coffee"></i>';
+            $element[0].innerHTML = ($scope.showText) ? '<i class="fa fa-coffee"></i><span>Start Brew!</span>' : '<i class="fa fa-coffee"></i>';
 
             //makes sure the button is not a submit!
             $element.attr('type', 'button');

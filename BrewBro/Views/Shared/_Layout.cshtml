@@ -12,28 +12,28 @@
     @*@Styles.Render("~/Content/less")*@
 </head>
 <body>
-    <nav role="navigation" class="navbar navbar-inverse" ng-controller="navController">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/">
-                Brew Bro
-                @* TODO: Logo *@
-            </a>
-        </div>
-        <!-- Collection of nav links and other content for toggling -->
-        <div id="navbarCollapse" class="collapse navbar-collapse" ng-if="userLoggedIn()">
-            <ul class="nav navbar-nav">
-                <li><a href="#/Groups">Groups</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/Profile">{{User.Name}}</a></li>
-            </ul>
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top" ng-controller="navController">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-click="navBarCollapsed = !navBarCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/">
+                    Brew Bro
+                    @* TODO: Logo *@
+                </a>
+            </div>
+            <div id="navbarCollapse" class="collapse navbar-collapse" ng-if="userLoggedIn()" collapse="!navBarCollapsed">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/Profile">{{User.Name}}</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="#/Groups">Groups</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
     <div>
@@ -49,6 +49,7 @@
     <script src="~/Scripts/Directives/compareValidator.js"></script>
     <script src="~/Scripts/Directives/startBrew.js"></script>
     <script src="~/Scripts/Factories/authentication.js"></script>
+    <script src="~/Scripts/Factories/group.js"></script>
     <script src="~/Scripts/base.js"></script>
     <script src="~/Scripts/Controllers/groupControllers.js"></script>
     <script src="~/Scripts/Controllers/userControllers.js"></script>

@@ -2,14 +2,14 @@
 <div class="jumbotron">
     <div class="container">
         <h1>Groups</h1>
-        <button type="button" class="btn btn-primary btn-lg" ng-click="showNewGroupForm()"><i class="fa fa-plus" style="color: white;"></i> Add Group</button>
+        <button type="button" class="btn btn-primary btn-lg" ng-click="showNewGroupForm()"><i class="fa fa-plus" style="color: white;"></i><span>Add Group</span></button>
     </div>
 </div>
 <div class="container">
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="group in groups">
             <div class="v-middle">
-                {{group.Name}}
+                <span>{{group.Name}}</span> <i ng-if="isGroupOwner(group.Owner.Id)" class="fa fa-star" title="You are the Owner of this Group"></i>
             </div>
             <div class="v-middle">
                 <div class="pull-right btn-group">

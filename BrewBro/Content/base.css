@@ -1,4 +1,8 @@
-﻿.nav, .pagination, .carousel, .panel-title a {
+﻿body {
+    padding-top: 40px;
+}
+
+.nav, .pagination, .carousel, .panel-title a {
     cursor: pointer;
 }
 
@@ -40,11 +44,15 @@
     margin-bottom: 0px;
 }
 
-.panel-title .fa {
+.panel-title > .fa {
     margin-right: 10px;
 }
 
+.fa + span, span + .fa, button + span {
+    margin-left: 10px;
+}
+
+
 button:active, button:focus {
-    border: none !important;
     outline: none !important;
 }

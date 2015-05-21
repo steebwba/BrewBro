@@ -1,4 +1,4 @@
-﻿var authService = angular.module('servicesModule', []);
+﻿var authService = angular.module('authFactory', []);
 
 authService.factory('Auth', function ($rootScope) {
     function getUserFromSession() {

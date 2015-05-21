@@ -154,6 +154,7 @@
     <Content Include="Scripts\Directives\startBrew.js" />
     <Content Include="Scripts\Directives\validate.js" />
     <Content Include="Scripts\Factories\authentication.js" />
+    <Content Include="Scripts\Factories\group.js" />
     <Content Include="Scripts\FileAPI.flash.swf" />
     <Content Include="Scripts\FileAPI.js" />
     <Content Include="Scripts\FileAPI.min.js" />

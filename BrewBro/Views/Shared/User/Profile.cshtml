@@ -11,11 +11,12 @@
         <ul ng-if="User.Groups.length > 0" class="list-group">
             <li ng-repeat="group in User.Groups" class="list-group-item">
                 <div class="v-middle">
-                    {{group.Name}}
+                    <span>{{group.Name}}</span><i ng-if="group.Owner.Id == User.Id" class="fa fa-star" title="You are the Owner of this Group"></i>
                 </div>
                 <div class="v-middle">
                     <div class="pull-right">
-                        <button class="btn btn-default" type="button" ng-click="removeFromGroup(group.Id)"><i class="fa fa-remove"></i></button>
+                        
+                        <button class="btn btn-default" type="button" ng-click="removeFromGroup(group.Id)" title="Leave Group"><i class="fa fa-remove"></i></button>
                     </div>
                 </div>
             </li>

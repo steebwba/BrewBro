@@ -2,7 +2,7 @@
     <div class="jumbotron">
         <div class="container">
             <!-- TODO: conditional click and title based on if the group owner is the logged in user -->
-            <h1 ng-if="!editMode">{{Group.Name}}<button type="button" class="btn btn-default" ng-click="startEdit()"><i class="fa fa-pencil fa-lg"></i></button></h1>
+            <h1 ng-if="!editMode">{{Group.Name}}<button type="button" class="btn btn-default" ng-click="startEdit()" ng-if="isGroupOwner()"><i class="fa fa-pencil fa-lg"></i></button></h1>
             <div ng-if="editMode">
                 <input type="text" placeholder="Enter Group Name" style="font-size: 63px; border: none; background-color: transparent" ng-model="GroupEdit.Group.Name" required />
 

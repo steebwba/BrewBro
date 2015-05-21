@@ -7,11 +7,12 @@
                                             'userService',
                                             'groupService',
                                             'brewService',
+                                            'authFactory',
+                                            'groupFactory',
                                             'ngAnimate',
                                             'ui.checkbox',
                                             'ui.bootstrap.showErrors',
-                                            'directivesModule',
-                                            'servicesModule']);
+                                            'directivesModule']);
 
 //Defining Routing
 appModule.config(function ($routeProvider, showErrorsConfigProvider) {

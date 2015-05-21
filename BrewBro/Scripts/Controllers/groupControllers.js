@@ -1,7 +1,7 @@
 ﻿var groupControllers = angular.module('groupControllers', []);
 
 groupControllers.controller('groupHomeController',
-  function ($scope, $http, $location, GroupService, Auth) {
+  function ($scope, $http, $location, GroupService, Auth, Group) {
       $scope.SearchParameters = {
           GroupName: ''
       }
@@ -24,11 +24,16 @@ groupControllers.controller('groupHomeController',
           $location.path('/Groups/' + id);
       }
 
+      $scope.isGroupOwner = function (ownerId) {
+          return Group.isUserGroupOwner(ownerId);
+      }
+
+
       $scope.loadGroups();
   });
 
 groupControllers.controller('groupViewController',
-  function ($scope, $http, $location, $routeParams, GroupService, Auth) {
+  function ($scope, $http, $location, $routeParams, GroupService, Auth, Group) {
       function resetEdit() {
           $scope.editMode = false;
           $scope.GroupEdit = {
@@ -51,6 +56,9 @@ groupControllers.controller('groupViewController',
           $scope.editMode = true;
           //clone the object so we can get back to it if we cancel
           $scope.GroupEdit.Group = JSON.parse(JSON.stringify($scope.Group));
+      }
+      $scope.isGroupOwner = function () {
+          return Group.isUserGroupOwner($scope.Group.Owner.Id);
       }
 
       $scope.getUserList = function () {
@@ -94,15 +102,14 @@ groupControllers.controller('groupViewController',
       $scope.addUser = function (id) {
           var userToAdd = $scope.GroupEdit.UsersToSelect.filter(function (el) { return el.Id == id })[0];
 
-          if (typeof ($scope.GroupEdit.Group.Users) != 'undefined')
-          {
+          if (typeof ($scope.GroupEdit.Group.Users) != 'undefined') {
               $scope.GroupEdit.Group.Users.push(userToAdd);
-             
+
           }
           else {
               $scope.GroupEdit.Group.Users = [userToAdd];
           }
-          
+
           $scope.GroupEdit.UsersToSelect.splice(userToAdd);
       }
 
@@ -115,6 +122,12 @@ groupControllers.controller('groupViewController',
           $scope.$broadcast('show-errors-check-validity');
 
           if ($scope.frmGroup.$valid) {
+              //No owner, so make the user triggering the save the owner
+              if ($scope.GroupEdit.Group.Owner == null)
+              {
+                  $scope.GroupEdit.Group.Owner = { Id : Auth.getUser().Id }
+              }
+
               GroupService.save($scope.GroupEdit.Group, function (data) {
                   if ($scope.addMode) {
                       var ownerId = Auth.getUser().Id;
@@ -151,7 +164,8 @@ groupControllers.controller('groupViewController',
 
       if ($scope.addMode) {
           $scope.startEdit();
-      } else {
+      }
+      else {
           GroupService.get({ id: $routeParams.id }, function (data) {
               $scope.Group = data;
           }, function () {

@@ -111,7 +111,22 @@ namespace BrewBro.Users.Business
 
             group.Users.RemoveAll(u => u.Id == userId);
 
-            _Repo.Update(group);
+            //Removed the user, and now there aren't any users left. so remove the group
+            if (group.Users.Count == 0)
+            {
+                _Repo.Delete(groupId);
+            }
+            else
+            {
+                //user is the owner, assign the owner role to another user
+                if (group.Owner.Id == userId)
+                {
+                    group.Owner.Id = group.Users.First().Id;
+                }
+
+                _Repo.Update(group);
+            }
+            
         }
 
         /// <summary>
