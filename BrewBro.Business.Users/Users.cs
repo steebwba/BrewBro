@@ -13,15 +13,17 @@ namespace BrewBro.Users.Business
     public class Users
     {
         IRepository<User> _Repo;
+        Groups _GroupBAL;
 
         public Users()
         {
             _Repo = new UsersRepository();
         }
 
-        public Users(IRepository<User> repo)
+        public Users(IRepository<User> repo, Groups groupBAL)
         {
             _Repo = repo;
+            _GroupBAL = groupBAL;
         }
 
 
@@ -159,7 +161,18 @@ namespace BrewBro.Users.Business
 
         public User Load(Guid id)
         {
-            return _Repo.FindById(id);
+            User retVal = _Repo.FindById(id);
+
+            RemovePasswordsFromResults(retVal);
+
+            //Dont init in constructor otherwise you'd get a circular reference leading to a stack overflow error
+            if(_GroupBAL == null){
+                _GroupBAL = new Groups();
+            }
+
+            retVal.Groups = _GroupBAL.FindByUser(id);
+
+            return retVal;
         }
 
         private void RemovePasswordsFromResults(IEnumerable<User> users)
@@ -167,6 +180,13 @@ namespace BrewBro.Users.Business
             //Remove the password from search results for security
             //TODO possibly move password to different collection
             users.AsParallel().ForAll(u => u.Password = null);
+        }
+
+        private void RemovePasswordsFromResults(User user)
+        {
+            //Remove the password from search results for security
+            //TODO possibly move password to different collection
+            user.Password = null;
         }
     }
 }

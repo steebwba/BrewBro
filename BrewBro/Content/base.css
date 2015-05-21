@@ -26,16 +26,25 @@
     width: 100%;
 }
 
-.list-group-item > div {
-    display: table-cell;
-}
+    .list-group-item > div {
+        display: table-cell;
+    }
 
-.jumbotron .btn.btn-default{
+.jumbotron .btn.btn-default {
     background-color: transparent;
     border: none;
     margin-left: 5px;
 }
 
-.navbar{
+.navbar {
     margin-bottom: 0px;
+}
+
+.panel-title .fa {
+    margin-right: 10px;
+}
+
+button:active, button:focus {
+    border: none !important;
+    outline: none !important;
 }

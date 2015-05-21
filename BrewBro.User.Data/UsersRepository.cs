@@ -36,9 +36,9 @@ namespace BrewBro.Users.Data
             Task.WaitAll(_Collection.InsertOneAsync(item));
         }
 
-        public void Delete(User item)
+        public void Delete(Guid id)
         {
-            Task.WaitAll(_Collection.DeleteOneAsync(u => u.Id == item.Id));
+            Task.WaitAll(_Collection.DeleteOneAsync(u => u.Id == id));
         }
 
         public void Update(User item)

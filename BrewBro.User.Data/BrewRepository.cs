@@ -38,7 +38,7 @@ namespace BrewBro.Users.Data
             Task.WaitAll(_Collection.InsertOneAsync(item));
         }
 
-        public void Delete(BrewHistory item)
+        public void Delete(Guid id)
         {
             throw new NotImplementedException();
         }

@@ -14,7 +14,7 @@ namespace BrewBro.Users.Data.Interfaces
 
         IList<T> Query(Expression<Func<T, bool>> filter);
         void Add(T item);
-        void Delete(T item);
+        void Delete(Guid id);
         void Update(T item);
         T FindById(Guid Id);
     }

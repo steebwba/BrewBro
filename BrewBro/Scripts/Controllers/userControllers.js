@@ -66,10 +66,20 @@ userControllers.controller('registerController',
   });
 
 userControllers.controller('userProfileController',
-  function ($scope, $http, $location, UserService, Auth) {
+  function ($scope, $http, $location, UserService, Auth, GroupService) {
+      //TODO File upload for profile pictures
       $scope.User = Auth.getUser();
+      $scope.removeFromGroup = function (id) {
+          GroupService.removeUser({ userId: $scope.User.Id, groupId: id }, function () {
+              alert('remove from group');
+          }, function () {
+              alert('it went wrong!');
+          })
 
+      }
       UserService.get({ Id: $scope.User.Id }, function (data) {
           $scope.User = data;
+      }, function () {
+          alert('it went wrong!');
       })
   });

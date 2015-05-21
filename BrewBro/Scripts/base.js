@@ -18,7 +18,8 @@ appModule.config(function ($routeProvider, showErrorsConfigProvider) {
     $routeProvider
     .when('/',
     {
-        templateUrl: 'Home/Landing'
+        templateUrl: 'Home/Landing',
+        controller: 'navController'
     })
     .when('/Login',
     {

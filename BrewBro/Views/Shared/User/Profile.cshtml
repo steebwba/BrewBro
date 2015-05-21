@@ -3,3 +3,22 @@
         <h1>{{User.Name}}</h1>
     </div>
 </div>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-group"></i>Groups</h3>
+        </div>
+        <ul ng-if="User.Groups.length > 0" class="list-group">
+            <li ng-repeat="group in User.Groups" class="list-group-item">
+                <div class="v-middle">
+                    {{group.Name}}
+                </div>
+                <div class="v-middle">
+                    <div class="pull-right">
+                        <button class="btn btn-default" type="button" ng-click="removeFromGroup(group.Id)"><i class="fa fa-remove"></i></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -42,9 +42,9 @@ namespace BrewBro.Users.Data
             Task.WaitAll(_Collection.InsertOneAsync(item));
         }
 
-        public void Delete(Group item)
+        public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            Task.WaitAll(_Collection.DeleteOneAsync(u => u.Id == id));
         }
 
         public void Update(Group item)

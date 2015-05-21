@@ -1,6 +1,6 @@
 ﻿var authService = angular.module('servicesModule', []);
 
-authService.factory('Auth', function () {
+authService.factory('Auth', function ($rootScope) {
     function getUserFromSession() {
         var user = sessionStorage.getItem('userToken');
         if (user == null) {
@@ -13,6 +13,7 @@ authService.factory('Auth', function () {
 
         setUser: function (user) {
             sessionStorage.setItem('userToken', JSON.stringify(user));
+            $rootScope.$broadcast("loggedIn");
         },
         getUser: getUserFromSession,
         isLoggedIn: function () {

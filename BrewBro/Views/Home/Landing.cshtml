@@ -8,6 +8,13 @@
     </div>
 </div>
 <div class="container">
-    @Html.Partial("User/Login")
-</div>
+    <div ng-if="!userLoggedIn()">
+        @Html.Partial("User/Login")
+    </div>
 
+    <div ng-if="userLoggedIn()" class="well">
+        Use the navigation bar at the top to get a brew on, bro
+    </div>
+
+
+</div>
