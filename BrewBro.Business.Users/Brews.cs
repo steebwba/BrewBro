@@ -15,7 +15,6 @@ namespace BrewBro.Users.Business
     public class Brews
     {
         IRepository<BrewHistory> _Repo;
-        Groups _GroupBusiness;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Brews"/> class.
@@ -23,7 +22,6 @@ namespace BrewBro.Users.Business
         public Brews()
         {
             _Repo = new BrewRepository();
-            _GroupBusiness = new Groups();
         }
 
         /// <summary>
@@ -31,24 +29,31 @@ namespace BrewBro.Users.Business
         /// </summary>
         /// <param name="repo">The repo.</param>
         /// <param name="groupBAL">The group bal.</param>
-        public Brews(IRepository<BrewHistory> repo, Groups groupBAL)
+        public Brews(IRepository<BrewHistory> repo)
         {
             _Repo = repo;
-            _GroupBusiness = groupBAL;
         }
 
         /// <summary>
         /// Inserts the history item for a brew event.
         /// </summary>
         /// <param name="historyItem">The history item.</param>
-        public BrewHistory InsertHistory(BrewHistory historyItem)
+        public BrewHistory InsertHistory(Guid groupId, Guid userId)
         {
+            BrewHistory historyItem = new BrewHistory()
+            {
+                Date = DateTime.Now,
+                User = new User() { Id = userId },
+                Group = new Group() { Id = groupId }
+            };
+
             //Save the history item
             _Repo.Add(historyItem);
+
             var usersSelected = historyItem.Group.Users.Select(u => u.Id);
 
             //Now its saved, go and send the emails to notify the users in the group
-            historyItem.Group = _GroupBusiness.Load(historyItem.Group.Id);
+            historyItem.Group = new Groups().Load(historyItem.Group.Id);
             historyItem.Group.Users.RemoveAll(u => !usersSelected.Contains(u.Id));
 
             historyItem.User = historyItem.Group.Users.First(x => x.Id == historyItem.User.Id);
@@ -60,7 +65,7 @@ namespace BrewBro.Users.Business
             {
                 bool userSelected = (x.Id == historyItem.User.Id);
                 //TODO Put email content into resources file
-                string subject =  userSelected? "Get the kettle on, bro!" : "Bro, There's a brew happening!";
+                string subject = userSelected ? "Get the kettle on, bro!" : "Bro, There's a brew happening!";
                 string body = userSelected ? "Oh man, looks like you need to get a brew on. Hop to it!" : string.Format("{0} needs to get the kettle on, give 'em a nudge!", historyItem.User.Name);
 
 
@@ -81,6 +86,28 @@ namespace BrewBro.Users.Business
 
 
             return historyItem;
+        }
+
+        /// <summary>
+        /// Loads the brew history for a group.
+        /// </summary>
+        /// <param name="groupId">The group identifier.</param>
+        /// <returns></returns>
+        public List<BrewHistory> LoadHistoryByGroup(Guid groupId)
+        {
+            Users userBAL = new Users();
+
+            var history = _Repo.Query(h => h.Group.Id == groupId);
+
+            var users = userBAL.Load(history.Select(h => h.User.Id).Distinct());
+
+
+            history.AsParallel().ForAll(h =>
+            {
+                h.User = users.First(u => u.Id == h.User.Id);
+            });
+
+            return history.OrderByDescending(h => h.Date).ToList();
         }
     }
 }

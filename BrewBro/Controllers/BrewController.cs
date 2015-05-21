@@ -13,9 +13,18 @@ namespace BrewBro.Controllers
     {
         Brews _BusinessLayer = new Brews();
 
-        public BrewHistory Post (BrewHistory historyItem)
+        [HttpPost]
+        [Route("api/Group/{groupId}/Brew/{userId}")]
+        public BrewHistory Post (Guid groupId, Guid userId)
         {
-            return _BusinessLayer.InsertHistory(historyItem);
+            return _BusinessLayer.InsertHistory(groupId, userId);
+        }
+
+        [Route("api/Group/{groupId}/Brew")]
+        [HttpGet]
+        public List<BrewHistory> Get(Guid groupId)
+        {
+            return _BusinessLayer.LoadHistoryByGroup(groupId);
         }
     }
 }

@@ -33,7 +33,6 @@ namespace BrewBro.Core
         /// <value>
         ///   <c>true</c> if deleted; otherwise, <c>false</c>.
         /// </value>
-        [BsonIgnore]
         public bool Deleted { get; set; }
     }
 }

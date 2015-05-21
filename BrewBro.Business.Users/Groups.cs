@@ -59,7 +59,7 @@ namespace BrewBro.Users.Business
         /// <returns></returns>
         public List<Group> Search(string searchText)
         {
-            Expression<Func<Group, bool>> filter = (u => u.Name.ToLower().StartsWith((searchText ?? string.Empty).ToLower()));
+            Expression<Func<Group, bool>> filter = (u => !u.Deleted && u.Name.ToLower().StartsWith((searchText ?? string.Empty).ToLower()));
 
             return _Repo.Query(filter).ToList();
         }
@@ -85,7 +85,7 @@ namespace BrewBro.Users.Business
         /// <returns></returns>
         public List<Group> FindByUser(Guid userId)
         {
-            var groups = _Repo.Query(g => g.Users.Any(u => u.Id == userId));
+            var groups = _Repo.Query(g => !g.Deleted && g.Users.Any(u => u.Id == userId));
 
             //Remove the users in the group, as we only want to display the basic data for a group when searching by user
             groups.AsParallel().ForAll(g => g.Users.Clear());

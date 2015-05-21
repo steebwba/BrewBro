@@ -133,7 +133,7 @@ namespace BrewBro.Users.Business
         /// <returns></returns>
         public User GetByEmail(string email)
         {
-            return _Repo.Query(u => u.Email.ToLower() == email.ToLower()).FirstOrDefault();
+            return _Repo.Query(u => !u.Deleted && u.Email.ToLower() == email.ToLower()).FirstOrDefault();
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace BrewBro.Users.Business
         /// <returns></returns>
         public List<User> Search(string searchText)
         {
-            IList<User> retVal = _Repo.Query(u => u.Name.ToLower().StartsWith(searchText.ToLower()) || u.Email.ToLower().StartsWith(searchText.ToLower()));
+            IList<User> retVal = _Repo.Query(u => !u.Deleted && (u.Name.ToLower().StartsWith(searchText.ToLower()) || u.Email.ToLower().StartsWith(searchText.ToLower())));
 
             RemovePasswordsFromResults(retVal);
 
@@ -152,7 +152,7 @@ namespace BrewBro.Users.Business
 
         public List<User> Load(IEnumerable<Guid> ids)
         {
-            IList<User> retVal = _Repo.Query(u => ids.Contains(u.Id));
+            IList<User> retVal = _Repo.Query(u => !u.Deleted && ids.Contains(u.Id));
 
             RemovePasswordsFromResults(retVal);
 

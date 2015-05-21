@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,9 +28,9 @@ namespace BrewBro.Users.Data
             throw new NotImplementedException();
         }
 
-        public IList<BrewHistory> Query(System.Linq.Expressions.Expression<Func<BrewHistory, bool>> filter)
+        public IList<BrewHistory> Query(Expression<Func<BrewHistory, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _Collection.Find(filter).ToListAsync().Result;
         }
 
         public void Add(BrewHistory item)

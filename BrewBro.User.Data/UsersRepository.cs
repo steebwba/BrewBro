@@ -27,7 +27,7 @@ namespace BrewBro.Users.Data
 
         public IList<User> GetAll()
         {
-            return _Collection.Find(x => x.Id != Guid.Empty).ToListAsync().Result;
+            return _Collection.Find(x => x.Id != Guid.Empty && !x.Deleted).ToListAsync().Result;
         }
 
         public void Add(User item)

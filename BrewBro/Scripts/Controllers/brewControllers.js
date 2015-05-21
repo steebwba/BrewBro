@@ -22,17 +22,8 @@ brewControllers.controller('brewController',
                   clearInterval($scope.brewEvent);
                   $scope.brewEvent = null;
                   $scope.$apply();
-                  BrewService.save({
-                      User: {
-                          Id: $scope.Brew.SelectedUser.Id
-                      },
-                      Group: {
-                          Id: $scope.Group.Id,
-                          Users: $scope.Group.Users.filter(function (el) { return el.Selected; })
-                      },
-                      Date: new Date()
-                  }, function () {
-
+                  BrewService.save({ groupId: $scope.Group.Id, userId: $scope.Brew.SelectedUser.Id }, function () {
+                        //TODO broadcast brew creation
                   },
                   function () {
                       alert('oh no!');

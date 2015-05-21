@@ -33,7 +33,7 @@ groupControllers.controller('groupHomeController',
   });
 
 groupControllers.controller('groupViewController',
-  function ($scope, $http, $location, $routeParams, GroupService, Auth, Group) {
+  function ($scope, $http, $location, $routeParams, GroupService, BrewService, Auth, Group) {
       function resetEdit() {
           $scope.editMode = false;
           $scope.GroupEdit = {
@@ -49,6 +49,9 @@ groupControllers.controller('groupViewController',
           Group: {},
           UsersToSelect: []
       };
+
+      $scope.BrewHistory = {};
+
       $scope.addMode = ($routeParams.id == 'Add');
       $scope.editMode = false;
       $scope.usersToSelect = [];
@@ -57,8 +60,9 @@ groupControllers.controller('groupViewController',
           //clone the object so we can get back to it if we cancel
           $scope.GroupEdit.Group = JSON.parse(JSON.stringify($scope.Group));
       }
-      $scope.isGroupOwner = function () {
-          return Group.isUserGroupOwner($scope.Group.Owner.Id);
+      $scope.isGroupOwner = function (userId) {
+          return (typeof (userId) == 'undefined') ? Group.isUserGroupOwner($scope.Group.Owner.Id) : $scope.Group.Owner.Id == userId;
+         
       }
 
       $scope.getUserList = function () {
@@ -149,12 +153,9 @@ groupControllers.controller('groupViewController',
           }
       }
 
-
-
       $scope.kickUser = function (id) {
           alert('kick ' + id);
       }
-
 
       $scope.removeUser = function (id) {
           var userToRemove = $scope.GroupEdit.Group.Users.filter(function (el) { el.Id == id; });
@@ -168,6 +169,7 @@ groupControllers.controller('groupViewController',
       else {
           GroupService.get({ id: $routeParams.id }, function (data) {
               $scope.Group = data;
+              $scope.BrewHistory = BrewService.query({ groupId : $scope.Group.Id })
           }, function () {
 
           });

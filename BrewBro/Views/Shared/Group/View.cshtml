@@ -55,7 +55,7 @@
                         {{user.Name}}
                     </div>
                     <div class="v-middle">
-                        <div class="pull-right btn-group">
+                        <div class="pull-right btn-group" ng-if="!isGroupOwner(user.Id)">
                             <!-- TODO: conditional click and title based on if the group owner is the logged in user -->
                             <button class="btn btn-default" type="button" title="{{ editMode ? 'Remove User' : 'Initiate Vote to Kick'}}" ng-click="editMode ? removeUser(user.Id) : kickUser(user.Id)"><i class="fa fa-user-times"></i></button>
                         </div>
@@ -63,6 +63,30 @@
 
                 </li>
             </ul>
+        </div>
+        @* TODO Infinite Scroll *@
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-coffee"></i>Brew History</h3>
+            </div>
+            <table class="table hcenter">
+                <tr>
+                    <th style="width: 25%">When</th>
+                    <th>What Time</th>
+                    <th>The Chosen One</th>
+                </tr>
+                <tr ng-repeat="brew in BrewHistory">
+                    <td>
+                        {{brew.Date | date : 'dd/MM/yyyy' }}
+                    </td>
+                    <td>
+                        {{brew.Date | date : 'H:mm' }}
+                    </td>
+                    <td>
+                        {{brew.User.Name}}
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </form>

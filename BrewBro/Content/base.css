@@ -56,3 +56,7 @@
 button:active, button:focus {
     outline: none !important;
 }
+
+.hcenter, table.hcenter th{
+    text-align: center !important;
+}
