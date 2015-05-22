@@ -69,21 +69,21 @@
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-coffee"></i>Brew History</h3>
             </div>
-            <table class="table hcenter">
+            <table class="table">
                 <tr>
                     <th style="width: 25%">When</th>
                     <th>What Time</th>
                     <th>The Chosen Bro</th>
                 </tr>
                 <tr ng-repeat="brew in BrewHistory">
-                    <td>
+                    <td class="v-middle">
                         {{brew.Date | date : 'dd/MM/yyyy' }}
                     </td>
-                    <td>
+                    <td class="v-middle">
                         {{brew.Date | date : 'H:mm' }}
                     </td>
-                    <td>
-                        {{brew.User.Name}}
+                    <td class="v-middle">
+                        <profile-pic source="{{brew.User.ProfileImage}}" user-id="{{brew.User.Id}}" size="small"></profile-pic>{{brew.User.Name}}
                     </td>
                 </tr>
             </table>

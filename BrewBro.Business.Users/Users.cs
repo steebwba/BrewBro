@@ -179,6 +179,7 @@ namespace BrewBro.Users.Business
         {
             User user = _Repo.FindById(userId);
             
+            //TODO remove existing image if it exists
             user.ProfileImage = path;
 
             _Repo.Update(user);

@@ -33,35 +33,46 @@
 
 
         var loadTemplate = function ($scope, $element, $attrs) {
+            if (!("source" in $attrs) || !("userId" in $attrs)) {
+                //user-id and/or source attribute not present so dont show a profile pic
+                return;
+
+            }
             var imagePath = '';
             var defaultImage = 'img/noProfilePic.png';
             var buildPic = function () {
                 $element[0].innerHTML = '';
-                var date = new Date();
-                $scope.imageSource = (imagePath == 'null' || imagePath == '' || typeof (imagePath) == 'undefined') ? defaultImage : 'Uploads/Profiles/' + imagePath + '?timestamp=' + date.getTime();
+
+                var sizeClass = '';
+                console.log($attrs["size"]);
+                switch ($attrs["size"]) {
+                    case 'small':
+                        sizeClass = 'sm';
+                        break;
+                    case 'xsmall':
+                        sizeClass = 'xsm';
+                        break;
+                    default:
+                        break;
+                }
+
+
+                $scope.imageSource = (imagePath == 'null' || imagePath == '' || typeof (imagePath) == 'undefined') ? defaultImage : 'Uploads/Profiles/' + imagePath + '?timestamp=' + new Date().getTime();
 
                 var image = '<img src="' + $scope.imageSource + '" onerror="this.src=\'' + defaultImage + '\';"/>';
-
-                var template = ($scope.allowEdit) ? '<div ngf-drop ng-model="files" ngf-select ngf-drop-available="true" ng-model-rejected="rejFiles" ngf-drag-over-class="{accept:\'dragover\', reject:\'dragover-err\', delay:100}" class="drop-box profile-pic"  ngf-allow-dir="true" ngf-accept="accept" accept="image/*">' + image : '<div class="profile-pic">' + ;
+                var template = ($scope.allowEdit) ? '<div ngf-drop ng-model="files" ngf-select ngf-drop-available="true" ng-model-rejected="rejFiles" ngf-drag-over-class="{accept:\'dragover\', reject:\'dragover-err\', delay:100}" class="drop-box profile-pic ' + sizeClass + '"  ngf-allow-dir="true" ngf-accept="accept" accept="image/*">' + image : '<div class="profile-pic ' + sizeClass + '">' + image;
 
                 if ($scope.allowEdit) {
                     template += '<button type="button" class="btn btn-default"><i class="fa fa-pencil fa-lg"></i></button>';
                 }
 
                 template += '</div>';
-
                 $element[0].innerHTML = template;
                 $compile($element.contents())($scope);
             }
 
             $scope.files = [];
-
-            if (!("source" in $attrs) || !("userId" in $attrs)) {
-                $element[0].outerHTML = '';
-                //user-id and/or source attribute not present so dont show a profile pic
-                return;
-            }
-
+       
             $attrs.$observe('source', function (value) {
                 imagePath = value;
                 buildPic();
@@ -85,7 +96,7 @@
                     });
                 }
 
-               
+
             });
         }
 
@@ -94,7 +105,8 @@
             scope: {
                 imageSource: '@',
                 userId: '@',
-                allowEdit: '='
+                allowEdit: '=',
+                size: '='
             },
             controller: controller,
             link: loadTemplate

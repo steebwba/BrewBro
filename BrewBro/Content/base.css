@@ -22,7 +22,7 @@
 }
 
 .v-middle {
-    vertical-align: middle;
+    vertical-align: middle !important;
 }
 
 .list-group-item {
@@ -64,8 +64,10 @@ button:active, button:focus {
 .profile-pic {
     position: relative;
     height: 150px;
+    width: 150px;
     display: inline-block;
     cursor: pointer;
+    margin-right: 10px;
 }
 
     .profile-pic > img {
@@ -74,6 +76,7 @@ button:active, button:focus {
         height: 100%;
         margin-right: 10px;
         vertical-align: middle;
+        max-width: 150px;
     }
 
     .profile-pic > button {
@@ -90,6 +93,21 @@ button:active, button:focus {
             box-shadow: none;
         }
 
-nav .profile-pic {
-    height: 19px;
-}
+    .profile-pic.xsm {
+        height: 19px;
+        width: 19px;
+    }
+
+        .profile-pic.xsm > img {
+            max-width: 19px;
+        }
+
+
+    .profile-pic.sm {
+        height: 50px;
+        width: 50px;
+    }
+
+        .profile-pic.sm > img {
+            max-width: 50px;
+        }
