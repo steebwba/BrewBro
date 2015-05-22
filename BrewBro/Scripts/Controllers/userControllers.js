@@ -82,5 +82,5 @@ userControllers.controller('userProfileController',
           $scope.User = data;
       }, function () {
           alert('it went wrong!');
-      })
+      })   
   });

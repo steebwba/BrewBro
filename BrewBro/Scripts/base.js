@@ -14,7 +14,8 @@ var appModule = angular.module('brewBro', ['ngRoute',
                                             'ui.checkbox',
                                             'ui.bootstrap.showErrors',
                                             'directivesModule',
-                                            'profilePicDirective']);
+                                            'profilePicDirective',
+                                            'ngFileUpload']);
 
 //Defining Routing
 appModule.config(function ($routeProvider, showErrorsConfigProvider) {

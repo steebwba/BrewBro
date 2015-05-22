@@ -1,7 +1,7 @@
 ﻿var navControllers = angular.module('navControllers', []);
 
 navControllers.controller('navController',
-  function ($scope, $http, $location, Auth) {
+  function ($scope, $http, $location, Auth, UserService) {
 
       $scope.User = Auth.getUser();
 
@@ -13,5 +13,13 @@ navControllers.controller('navController',
       $scope.$on('loggedIn', function () {
           $scope.User = Auth.getUser();
       });
+
+      //$scope.$on('profilePicChanged', function (event, args) {
+      //    if (args == $scope.User.Id) {
+      //        UserService.get({ Id: $scope.User.Id }, function (data) {
+      //            $scope.User.ProfileImage = data.ProfileImage;
+      //        });
+      //    }        
+      //});
   }
   );

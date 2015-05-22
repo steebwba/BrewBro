@@ -28,7 +28,7 @@
             </div>
             <div id="navbarCollapse" class="collapse navbar-collapse" ng-if="userLoggedIn()" collapse="!navBarCollapsed">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/Profile"><profile-pic source="{{User.ProfileImage}}"></profile-pic>{{User.Name}}</a></li>
+                    <li><a href="#/Profile"><profile-pic source="{{User.ProfileImage}}" user-id="{{User.Id}}"></profile-pic>{{User.Name}}</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
                     <li><a href="#/Groups">Groups</a></li>
@@ -45,6 +45,8 @@
     <script src="~/Scripts/angular-animate.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap.js"></script>
     <script src="~/Scripts/angular-ui/angular-bootstrap-checkbox.js"></script>
+    <script src="~/Scripts/ng-file-upload-shim.min.js"></script>
+    <script src="~/Scripts/ng-file-upload.min.js"></script> 
     <script src="~/Scripts/Directives/validate.js"></script>
     <script src="~/Scripts/Directives/compareValidator.js"></script>
     <script src="~/Scripts/Directives/startBrew.js"></script>

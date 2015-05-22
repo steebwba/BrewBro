@@ -175,6 +175,15 @@ namespace BrewBro.Users.Business
             return retVal;
         }
 
+        public void SaveProfileImage(Guid userId, string path)
+        {
+            User user = _Repo.FindById(userId);
+            
+            user.ProfileImage = path;
+
+            _Repo.Update(user);
+        }
+
         private void RemovePasswordsFromResults(IEnumerable<User> users)
         {
             //Remove the password from search results for security

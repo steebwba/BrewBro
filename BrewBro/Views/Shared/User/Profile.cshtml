@@ -1,6 +1,6 @@
 ﻿<div class="jumbotron">
     <div class="container">
-        <h1><profile-pic source="{{User.ProfileImage}}"></profile-pic>{{User.Name}}</h1>
+        <h1><profile-pic source="{{User.ProfileImage}}" allow-edit="true" user-id="{{User.Id}}"></profile-pic>{{User.Name}}</h1>
     </div>
 </div>
 <div class="container">
@@ -15,7 +15,7 @@
                 </div>
                 <div class="v-middle">
                     <div class="pull-right">
-                        
+
                         <button class="btn btn-default" type="button" ng-click="removeFromGroup(group.Id)" title="Leave Group"><i class="fa fa-remove"></i></button>
                     </div>
                 </div>

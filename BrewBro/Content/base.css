@@ -62,13 +62,34 @@ button:active, button:focus {
 }
 
 .profile-pic {
-    background-size: contain;
-    width: auto;
+    position: relative;
     height: 150px;
-    margin-right: 10px;
+    display: inline-block;
+    cursor: pointer;
 }
+
+    .profile-pic > img {
+        background-size: contain;
+        width: auto;
+        height: 100%;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .profile-pic > button {
+        position: absolute;
+        color: black;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background-color: transparent;
+    }
+
+        .profile-pic > button:hover, .profile-pic > button:active, .profile-pic > button:focus {
+            color: black !important;
+            box-shadow: none;
+        }
 
 nav .profile-pic {
     height: 19px;
-    vertical-align: bottom;
 }
