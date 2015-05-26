@@ -33,18 +33,18 @@
 
 
         var loadTemplate = function ($scope, $element, $attrs) {
-            if (!("source" in $attrs) || !("userId" in $attrs)) {
-                //user-id and/or source attribute not present so dont show a profile pic
-                return;
+            //if (!("source" in $attrs) || !("userId" in $attrs)) {
+            //    //user-id and/or source attribute not present so dont show a profile pic
+            //    return;
 
-            }
+            //}
             var imagePath = '';
             var defaultImage = 'img/noProfilePic.png';
             var buildPic = function () {
                 $element[0].innerHTML = '';
 
                 var sizeClass = '';
-                console.log($attrs["size"]);
+
                 switch ($attrs["size"]) {
                     case 'small':
                         sizeClass = 'sm';
@@ -74,9 +74,11 @@
             $scope.files = [];
        
             $attrs.$observe('source', function (value) {
-                imagePath = value;
-                buildPic();
-
+                //set a 0 timeout to make sure it runs in the next cycle and (hopefully!) prevent race-conditions which would prevent the image from displaying
+                setTimeout(function () {
+                    imagePath = value;
+                    buildPic();
+                }, 0);
             });
 
             $rootScope.$on('profilePicChanged', function (event, args) {
