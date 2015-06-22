@@ -57,9 +57,12 @@ namespace BrewBro.Users.Business
         /// </summary>
         /// <param name="searchText">The search text.</param>
         /// <returns></returns>
-        public List<Group> Search(string searchText)
+        public List<Group> Search(Guid userId, string searchText)
         {
-            Expression<Func<Group, bool>> filter = (u => !u.Deleted && u.Name.ToLower().StartsWith((searchText ?? string.Empty).ToLower()));
+            Expression<Func<Group, bool>> filter = (g => !g.Deleted 
+                                                        && g.Name.ToLower().StartsWith((searchText ?? string.Empty).ToLower())
+                                                        && g.Users.Any(u => u.Id == userId)
+                                                   );
 
             return _Repo.Query(filter).ToList();
         }

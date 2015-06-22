@@ -17,9 +17,9 @@ namespace BrewBro.Controllers
 
         [HttpGet]
         [Route("api/User/{userId}/Group/{searchText=}")]
-        public List<Group> Get(string searchText)
+        public List<Group> Get(Guid userId, string searchText)
         {
-            return _BAL.Search(searchText);
+            return _BAL.Search(userId, searchText);
         }
 
         [HttpGet]
